@@ -2,6 +2,12 @@ esphome:
   name: somfy
   platform: ESP32
   board: nodemcu-32s
+  libraries:
+    - Somfy_Remote
+  platformio_options:
+    lib_deps:
+      - EEPROM
+      - SPI
 
 wifi:
   ssid: !secret wifi_ssid
