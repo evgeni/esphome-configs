@@ -8,6 +8,9 @@ esphome:
     lib_deps:
       - EEPROM
       - SPI
+      - ArduinoJson-esphomelib
+  includes:
+    - somfy_cover.h
 
 wifi:
   ssid: !secret wifi_ssid
@@ -29,3 +32,17 @@ api:
 
 ota:
   password: !secret ota_password
+
+web_server:
+  port: 80
+
+cover:
+- platform: custom
+  lambda: |-
+    auto somfy_cover = new SomfyCover();
+    App.register_component(somfy_cover);
+    return {somfy_cover};
+
+  covers:
+    - id: "somfy"
+      name: "Somfy Cover"
