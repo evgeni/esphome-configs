@@ -48,13 +48,14 @@ class SomfyCover : public Component, public Cover {
     }
 
     if (call.get_stop()) {
-      ESP_LOGI("somfy", "STOP");
-      somfyr.move("MY");
       stop_count++;
       if (stop_count == 3) {
         ESP_LOGI("somfy", "PROG");
         somfyr.move("PROGRAM");
         stop_count = 0;
+      } else {
+        ESP_LOGI("somfy", "STOP");
+        somfyr.move("MY");
       }
     }
 
