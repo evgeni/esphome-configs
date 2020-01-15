@@ -15,7 +15,8 @@ class SomfyCover : public Component, public Cover {
     int stop_count;
 
   void setup() override {
-    // This will be called by App.setup()
+    // need to set GPIO PIN 4 as OUTPUT, otherwise no commands will be sent
+    pinMode(4, OUTPUT);
     EEPROM.begin(EEPROM_SIZE);
     stop_count = 0;
   }
