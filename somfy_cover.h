@@ -33,6 +33,8 @@ class SomfyCover : public Component, public Cover {
     if (call.get_position().has_value()) {
       float pos = *call.get_position();
 
+      stop_count = 0;
+
       if (pos == COVER_OPEN) {
         ESP_LOGI("somfy", "OPEN");
         somfyr.move("UP");
