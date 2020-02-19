@@ -76,3 +76,27 @@ sensor:
   - platform: adc
     id: temp_analog_reading
     pin: ${pin_temp}
+
+switch:
+  - platform: gpio
+    pin: ${pin_relay1}
+    name: "Relay #1"
+    id: relay1
+    interlock: &interlock_group [relay1, relay2]
+
+  - platform: gpio
+    pin: ${pin_relay2}
+    name: "Relay #2"
+    id: relay2
+    interlock: *interlock_group
+
+binary_sensor:
+  - platform: gpio
+    pin: ${pin_switch1n}
+    name: "Switch #1"
+    id: switch1
+
+  - platform: gpio
+    pin: ${pin_switch2n}
+    name: "Switch #2"
+    id: switch2
