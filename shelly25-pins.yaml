@@ -1,0 +1,10 @@
+pin_led1: GPIO0
+pin_button1: GPIO2
+pin_relay1: GPIO4
+pin_switch2n: GPIO5
+pin_sda: GPIO12
+pin_switch1n: GPIO13
+pin_scl: GPIO14
+pin_relay2: GPIO15
+pin_ade7953: GPIO16
+pin_temp: A0

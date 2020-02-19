@@ -1,0 +1,5 @@
+substitutions:
+  devicename: shelly25_evgeni
+  <<: !include shelly25-pins.yaml
+
+<<: !include shelly25.yaml
