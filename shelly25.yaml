@@ -23,3 +23,44 @@ api:
 
 ota:
   password: !secret ota_password
+
+i2c:
+  sda: GPIO12
+  scl: GPIO14
+
+sensor:
+  - platform: ade7953
+    voltage:
+      name: Shelly Voltage
+    current_a:
+      name: Shelly Current B
+    current_b:
+      name: Shelly Current A
+    active_power_a:
+      name: Shelly Active Power B
+      filters:
+        - multiply: -1
+    active_power_b:
+      name: Shelly Active Power A
+      filters:
+        - multiply: -1
+    update_interval: 60s
+
+  # NTC Temperature
+  - platform: ntc
+    sensor: temp_resistance_reading
+    name: "Shelly Temperature"
+    calibration:
+      b_constant: 3350
+      reference_resistance: 10kOhm
+      reference_temperature: 298.15K
+
+  - platform: resistance
+    id: temp_resistance_reading
+    sensor: temp_analog_reading
+    configuration: DOWNSTREAM
+    resistor: 32kOhm
+
+  - platform: adc
+    id: temp_analog_reading
+    pin: A0
