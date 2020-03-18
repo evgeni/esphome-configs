@@ -83,6 +83,11 @@ switch:
     id: relay2
     interlock: *interlock_group
 
+  - platform: template
+    id: virtual_switch
+    name: "Virtual Switch"
+    optimistic: true
+
 binary_sensor:
   - platform: gpio
     pin: ${pin_switch1n}
