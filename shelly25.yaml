@@ -41,10 +41,12 @@ sensor:
       name: Shelly Current A
     active_power_a:
       name: Shelly Active Power B
+      id: shelly_active_power_b
       filters:
         - multiply: -1
     active_power_b:
       name: Shelly Active Power A
+      id: shelly_active_power_a
       filters:
         - multiply: -1
     update_interval: 60s
@@ -86,8 +88,51 @@ binary_sensor:
     pin: ${pin_switch1n}
     name: "Switch #1"
     id: switch1
+    on_press:
+      then:
+        cover.open: rolladen
 
   - platform: gpio
     pin: ${pin_switch2n}
     name: "Switch #2"
     id: switch2
+    on_press:
+      then:
+        cover.close: rolladen
+
+  - platform: template
+    name: "Moving UP"
+    id: moving_up
+    lambda: |-
+      if (id(shelly_active_power_a).state < 30) {
+        return true;
+      } else {
+        return false;
+      }
+
+  - platform: template
+    name: "Moving DOWN"
+    id: moving_down
+    lambda: |-
+      if (id(shelly_active_power_b).state < 30) {
+        return true;
+      } else {
+        return false;
+      }
+
+cover:
+  - platform: time_based
+    name: "Rolladen"
+    id: rolladen
+
+    open_action:
+      - switch.turn_on: relay1
+    open_duration: 16sec
+
+    close_action:
+      - switch.turn_on: relay2
+    close_duration: 16sec
+
+    stop_action:
+      - switch.turn_off: relay1
+      - switch.turn_off: relay2
