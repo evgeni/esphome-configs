@@ -84,46 +84,44 @@ switch:
     interlock: *interlock_group
 
   - platform: template
-    id: virtual_switch
-    name: "Virtual Switch"
+    id: block_control
+    name: "Block Control"
     optimistic: true
+
+  - platform: template
+    name: "Move UP"
+    lambda: |-
+      if (id(switch1).state && !id(block_control).state) {
+        return true;
+      } else {
+        return false;
+      }
+    on_turn_on:
+      then:
+        cover.open: rolladen
+
+  - platform: template
+    name: "Move DOWN"
+    lambda: |-
+      if (id(switch2).state && !id(block_control).state) {
+        return true;
+      } else {
+        return false;
+      }
+    on_turn_on:
+      then:
+        cover.close: rolladen
 
 binary_sensor:
   - platform: gpio
     pin: ${pin_switch1n}
     name: "Switch #1"
     id: switch1
-    on_press:
-      then:
-        cover.open: rolladen
 
   - platform: gpio
     pin: ${pin_switch2n}
     name: "Switch #2"
     id: switch2
-    on_press:
-      then:
-        cover.close: rolladen
-
-  - platform: template
-    name: "Moving UP"
-    id: moving_up
-    lambda: |-
-      if (id(shelly_active_power_a).state < 30) {
-        return true;
-      } else {
-        return false;
-      }
-
-  - platform: template
-    name: "Moving DOWN"
-    id: moving_down
-    lambda: |-
-      if (id(shelly_active_power_b).state < 30) {
-        return true;
-      } else {
-        return false;
-      }
 
 cover:
   - platform: time_based
