@@ -74,12 +74,14 @@ switch:
   - platform: gpio
     pin: ${pin_relay1}
     name: "Relay #1"
+    internal: true
     id: relay1
     interlock: &interlock_group [relay1, relay2]
 
   - platform: gpio
     pin: ${pin_relay2}
     name: "Relay #2"
+    internal: true
     id: relay2
     interlock: *interlock_group
 
@@ -90,6 +92,7 @@ switch:
 
   - platform: template
     name: "Move UP"
+    internal: true
     lambda: |-
       if (id(switch1).state && !id(block_control).state) {
         return true;
@@ -102,6 +105,7 @@ switch:
 
   - platform: template
     name: "Move DOWN"
+    internal: true
     lambda: |-
       if (id(switch2).state && !id(block_control).state) {
         return true;
@@ -116,11 +120,13 @@ binary_sensor:
   - platform: gpio
     pin: ${pin_switch1n}
     name: "Switch #1"
+    internal: true
     id: switch1
 
   - platform: gpio
     pin: ${pin_switch2n}
     name: "Switch #2"
+    internal: true
     id: switch2
 
 cover:
