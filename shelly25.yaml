@@ -102,6 +102,9 @@ switch:
     on_turn_on:
       then:
         cover.open: rolladen
+    on_turn_off:
+      then:
+        cover.stop: rolladen
 
   - platform: template
     name: "Move DOWN"
@@ -115,6 +118,9 @@ switch:
     on_turn_on:
       then:
         cover.close: rolladen
+    on_turn_off:
+      then:
+        cover.stop: rolladen
 
 binary_sensor:
   - platform: gpio
