@@ -94,7 +94,7 @@ switch:
     name: "Move UP"
     internal: true
     lambda: |-
-      if (id(switch1).state && !id(block_control).state) {
+      if (id(switch2).state && !id(block_control).state) {
         return true;
       } else {
         return false;
@@ -110,7 +110,7 @@ switch:
     name: "Move DOWN"
     internal: true
     lambda: |-
-      if (id(switch2).state && !id(block_control).state) {
+      if (id(switch1).state && !id(block_control).state) {
         return true;
       } else {
         return false;
@@ -141,11 +141,11 @@ cover:
     id: rolladen
 
     open_action:
-      - switch.turn_on: relay1
-    open_duration: 16sec
+      - switch.turn_on: relay2
+    open_duration: 17sec
 
     close_action:
-      - switch.turn_on: relay2
+      - switch.turn_on: relay1
     close_duration: 16sec
 
     stop_action:
