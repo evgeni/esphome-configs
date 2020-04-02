@@ -24,6 +24,10 @@ api:
 ota:
   password: !secret ota_password
 
+time:
+  - platform: homeassistant
+    id: homeassistant_time
+
 i2c:
   sda: ${pin_sda}
   scl: ${pin_scl}
