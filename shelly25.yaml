@@ -24,9 +24,6 @@ api:
 ota:
   password: !secret ota_password
 
-web_server:
-  port: 80
-
 i2c:
   sda: ${pin_sda}
   scl: ${pin_scl}
