@@ -27,6 +27,13 @@ ota:
 time:
   - platform: homeassistant
     id: homeassistant_time
+    on_time:
+      - cron: '0 0 21 * * *'
+        then:
+          cover.close: rolladen
+      - cron: '0 0 7 * * *'
+        then:
+          cover.open: rolladen
 
 i2c:
   sda: ${pin_sda}
