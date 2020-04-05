@@ -95,7 +95,7 @@ switch:
 
   - platform: template
     id: block_control
-    name: "Block Control"
+    name: "${location} Block Control"
     optimistic: true
 
   - platform: template
@@ -145,7 +145,7 @@ binary_sensor:
 
 cover:
   - platform: time_based
-    name: "Rolladen"
+    name: "${location} Rolladen"
     id: rolladen
 
     open_action:
