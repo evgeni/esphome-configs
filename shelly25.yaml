@@ -150,11 +150,11 @@ cover:
 
     open_action:
       - switch.turn_on: relay2
-    open_duration: 17sec
+    open_duration: ${open_duration}
 
     close_action:
       - switch.turn_on: relay1
-    close_duration: 16sec
+    close_duration: ${close_duration}
 
     stop_action:
       - switch.turn_off: relay1

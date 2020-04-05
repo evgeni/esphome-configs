@@ -1,6 +1,8 @@
 substitutions:
   devicename: shelly25_evgeni
   location: Evgeni
+  open_duration: 17sec
+  close_duration: 16sec
   <<: !include shelly25-pins.yaml
 
 <<: !include shelly25.yaml
