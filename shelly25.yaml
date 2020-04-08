@@ -102,7 +102,7 @@ switch:
     name: "Move UP"
     internal: true
     lambda: |-
-      if (id(switch2).state && !id(block_control).state) {
+      if (id(switch1).state && !id(block_control).state) {
         return true;
       } else {
         return false;
@@ -118,7 +118,7 @@ switch:
     name: "Move DOWN"
     internal: true
     lambda: |-
-      if (id(switch1).state && !id(block_control).state) {
+      if (id(switch2).state && !id(block_control).state) {
         return true;
       } else {
         return false;
