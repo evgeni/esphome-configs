@@ -45,16 +45,20 @@ sensor:
       name: Shelly Voltage
     current_a:
       name: Shelly Current B
+      internal: true
     current_b:
       name: Shelly Current A
+      internal: true
     active_power_a:
       name: Shelly Active Power B
       id: shelly_active_power_b
+      internal: true
       filters:
         - multiply: -1
     active_power_b:
       name: Shelly Active Power A
       id: shelly_active_power_a
+      internal: true
       filters:
         - multiply: -1
     update_interval: 60s
