@@ -47,6 +47,10 @@ i2c:
   sda: ${pin_sda}
   scl: ${pin_scl}
 
+sun:
+  latitude: !secret latitude
+  longitude: !secret longitude
+
 sensor:
   - platform: ade7953
     voltage:
