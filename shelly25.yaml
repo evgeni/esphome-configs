@@ -30,10 +30,18 @@ time:
     on_time:
       - cron: '0 0 21 * * *'
         then:
-          cover.close: rolladen
+          if:
+            condition:
+              switch.is_off: ignore_schedule
+            then:
+              cover.close: rolladen
       - cron: '0 0 7 * * *'
         then:
-          cover.open: rolladen
+          if:
+            condition:
+              switch.is_off: ignore_schedule
+            then:
+              cover.open: rolladen
 
 i2c:
   sda: ${pin_sda}
@@ -100,6 +108,11 @@ switch:
   - platform: template
     id: block_control
     name: "${location} Block Control"
+    optimistic: true
+
+  - platform: template
+    id: ignore_schedule
+    name: "${location} Ignore Schedule"
     optimistic: true
 
   - platform: template
