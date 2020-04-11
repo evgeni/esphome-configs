@@ -50,6 +50,14 @@ i2c:
 sun:
   latitude: !secret latitude
   longitude: !secret longitude
+  on_sunset:
+    - then:
+        if:
+          condition:
+            switch.is_off: ignore_schedule
+          then:
+            cover.close: rolladen
+
 
 sensor:
   - platform: ade7953
