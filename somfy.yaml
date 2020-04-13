@@ -46,3 +46,10 @@ cover:
   covers:
     - id: "somfy"
       name: "Somfy Cover"
+
+switch:
+  - platform: template
+    name: "PROG"
+    turn_on_action:
+      - lambda: |-
+          ((SomfyCover*)id(somfy))->program();

@@ -12,13 +12,11 @@ SomfyRemote somfyr("remote1", 0x131171); // <- Change remote name and remote cod
 
 class SomfyCover : public Component, public Cover {
   public:
-    int stop_count;
 
   void setup() override {
     // need to set GPIO PIN 4 as OUTPUT, otherwise no commands will be sent
     pinMode(4, OUTPUT);
     EEPROM.begin(EEPROM_SIZE);
-    stop_count = 0;
   }
 
   CoverTraits get_traits() override {
@@ -32,8 +30,6 @@ class SomfyCover : public Component, public Cover {
   void control(const CoverCall &call) override {
     if (call.get_position().has_value()) {
       float pos = *call.get_position();
-
-      stop_count = 0;
 
       if (pos == COVER_OPEN) {
         ESP_LOGI("somfy", "OPEN");
@@ -50,17 +46,15 @@ class SomfyCover : public Component, public Cover {
     }
 
     if (call.get_stop()) {
-      stop_count++;
-      if (stop_count == 3) {
-        ESP_LOGI("somfy", "PROG");
-        somfyr.move("PROGRAM");
-        stop_count = 0;
-      } else {
-        ESP_LOGI("somfy", "STOP");
-        somfyr.move("MY");
-      }
+      ESP_LOGI("somfy", "STOP");
+      somfyr.move("MY");
     }
 
     EEPROM.commit();
+  }
+
+  void program() {
+    ESP_LOGI("somfy", "PROG");
+    somfyr.move("PROGRAM");
   }
 };
