@@ -36,6 +36,13 @@ ota:
 web_server:
   port: 80
 
+sensor:
+  - platform: uptime
+    name: Uptime Sensor
+
+  - platform: wifi_signal
+    name: "WiFi Signal Sensor"
+
 cover:
 - platform: custom
   lambda: |-

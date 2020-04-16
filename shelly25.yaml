@@ -103,6 +103,12 @@ sensor:
     id: temp_analog_reading
     pin: ${pin_temp}
 
+  - platform: uptime
+    name: Uptime Sensor
+
+  - platform: wifi_signal
+    name: "WiFi Signal Sensor"
+
 switch:
   - platform: gpio
     pin: ${pin_relay1}
