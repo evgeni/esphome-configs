@@ -4,11 +4,6 @@ esphome:
   board: nodemcu-32s
   libraries:
     - Somfy_Remote
-  platformio_options:
-    lib_deps:
-      - EEPROM
-      - SPI
-      - ArduinoJson-esphomelib
   includes:
     - somfy_cover.h
 
