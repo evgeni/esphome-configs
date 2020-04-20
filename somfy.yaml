@@ -39,15 +39,15 @@ sensor:
     name: "WiFi Signal Sensor"
 
 cover:
-- platform: custom
-  lambda: |-
-    auto somfy_cover = new SomfyCover();
-    App.register_component(somfy_cover);
-    return {somfy_cover};
+  - platform: custom
+    lambda: |-
+      auto somfy_cover = new SomfyCover();
+      App.register_component(somfy_cover);
+      return {somfy_cover};
 
-  covers:
-    - id: "somfy"
-      name: "Somfy Cover"
+    covers:
+      - id: "somfy"
+        name: "Somfy Cover"
 
 switch:
   - platform: template
