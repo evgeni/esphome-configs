@@ -2,11 +2,11 @@ substitutions:
   devicename: shelly25_kitchen
   location: Kitchen
   open_duration: 17sec
-  open_switch: switch1
-  open_relay: relay2
+  open_switch: switch2
+  open_relay: relay1
   close_duration: 16sec
-  close_switch: switch2
-  close_relay: relay1
+  close_switch: switch1
+  close_relay: relay2
   <<: !include shelly25-pins.yaml
 
 <<: !include shelly25.yaml
