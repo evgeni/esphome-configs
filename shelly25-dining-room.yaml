@@ -1,0 +1,12 @@
+substitutions:
+  devicename: shelly25_dining_room
+  location: Dining Room
+  open_duration: 42sec
+  open_switch: switch1
+  open_relay: relay1
+  close_duration: 42sec
+  close_switch: switch2
+  close_relay: relay2
+  <<: !include shelly25-pins.yaml
+
+<<: !include shelly25.yaml
