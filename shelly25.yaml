@@ -37,7 +37,7 @@ time:
               switch.is_off: ignore_schedule
             then:
               cover.close: rolladen
-      - cron: '0 0 7 * * *'
+      - cron: ${open_time}
         then:
           if:
             condition:

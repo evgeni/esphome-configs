@@ -4,6 +4,7 @@ substitutions:
   open_duration: 17sec
   open_switch: switch2
   open_relay: relay1
+  open_time: '0 0 6 * * *'
   close_duration: 16sec
   close_switch: switch1
   close_relay: relay2
