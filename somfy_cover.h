@@ -1,8 +1,5 @@
 #include "esphome.h"
 #include <Somfy_Remote.h>
-#include <EEPROM.h>
-
-#define EEPROM_SIZE 64
 
 #define COVER_OPEN 1.0f
 #define COVER_CLOSED 0.0f
@@ -16,7 +13,6 @@ class SomfyCover : public Component, public Cover {
   void setup() override {
     // need to set GPIO PIN 4 as OUTPUT, otherwise no commands will be sent
     pinMode(4, OUTPUT);
-    EEPROM.begin(EEPROM_SIZE);
   }
 
   CoverTraits get_traits() override {
@@ -49,8 +45,6 @@ class SomfyCover : public Component, public Cover {
       ESP_LOGI("somfy", "STOP");
       somfyr.move("MY");
     }
-
-    EEPROM.commit();
   }
 
   void program() {
