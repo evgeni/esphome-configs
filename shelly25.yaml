@@ -2,7 +2,6 @@ esphome:
   name: ${devicename}
   platform: ESP8266
   board: modwifi
-  arduino_version: 2.4.2
 
 wifi:
   ssid: !secret wifi_ssid
