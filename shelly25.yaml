@@ -62,6 +62,7 @@ sun:
 
 sensor:
   - platform: ade7953
+    irq_pin: GPIO16
     voltage:
       name: Shelly Voltage
     current_a:
