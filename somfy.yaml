@@ -42,22 +42,36 @@ sensor:
 cover:
   - platform: custom
     lambda: |-
-      auto somfy_cover = new SomfyCover();
-      App.register_component(somfy_cover);
-      return {somfy_cover};
+      auto somfy_remote = new SomfyESPRemote();
+      somfy_remote->add_cover("somfy", "badezimmer", 0x5184c8);
+      somfy_remote->add_cover("somfy", "kinderzimmer", 0x131171);
+      App.register_component(somfy_remote);
+      return somfy_remote->covers;
 
     covers:
       - id: "somfy"
         name: "Somfy Cover"
+      - id: "somfy2"
+        name: "Somfy Cover2"
 
 switch:
   - platform: template
     name: "PROG"
     turn_on_action:
       - lambda: |-
-          ((SomfyCover*)id(somfy))->program();
+          ((SomfyESPCover*)id(somfy))->program();
   - platform: template
     name: "STOP"
     turn_on_action:
       - lambda: |-
-          ((SomfyCover*)id(somfy))->stop();
+          ((SomfyESPCover*)id(somfy))->stop();
+  - platform: template
+    name: "PROG2"
+    turn_on_action:
+      - lambda: |-
+          ((SomfyESPCover*)id(somfy2))->program();
+  - platform: template
+    name: "STOP2"
+    turn_on_action:
+      - lambda: |-
+          ((SomfyESPCover*)id(somfy2))->stop();

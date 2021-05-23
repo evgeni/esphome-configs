@@ -4,23 +4,21 @@
 #include <SomfyRemote.h>
 
 #define EMITTER_GPIO 2
-#define REMOTE 0x5184c8
 
 #define CC1101_FREQUENCY 433.42
 
 #define COVER_OPEN 1.0f
 #define COVER_CLOSED 0.0f
 
-NVSRollingCodeStorage rollingCodeStorage("somfy", "badezimmer");
-SomfyRemote somfyRemote(EMITTER_GPIO, REMOTE, &rollingCodeStorage);
+class SomfyESPCover : public Cover {
+private:
+  SomfyRemote *remote;
+  NVSRollingCodeStorage *storage;
 
-class SomfyCover : public Component, public Cover {
 public:
-  void setup() override {
-    somfyRemote.setup();
-
-    ELECHOUSE_cc1101.Init();
-    ELECHOUSE_cc1101.setMHZ(CC1101_FREQUENCY);
+  SomfyESPCover(const char *name, const char *key, uint32_t remoteCode) : Cover() {
+    storage = new NVSRollingCodeStorage(name, key);
+    remote = new SomfyRemote(EMITTER_GPIO, remoteCode, storage);
   }
 
   CoverTraits get_traits() override {
@@ -33,7 +31,7 @@ public:
 
   void sendCC1101Command(Command command) {
     ELECHOUSE_cc1101.SetTx();
-    somfyRemote.sendCommand(command);
+    remote->sendCommand(command);
     ELECHOUSE_cc1101.setSidle();
   }
 
@@ -64,5 +62,24 @@ public:
   void program() {
     ESP_LOGI("somfy", "PROG");
     sendCC1101Command(Command::Prog);
+  }
+};
+
+class SomfyESPRemote : public Component {
+public:
+  std::vector<esphome::cover::Cover *> covers;
+
+  void setup() override {
+    // need to set GPIO PIN 4 as OUTPUT, otherwise no commands will be sent
+    pinMode(EMITTER_GPIO, OUTPUT);
+    digitalWrite(EMITTER_GPIO, LOW);
+
+    ELECHOUSE_cc1101.Init();
+    ELECHOUSE_cc1101.setMHZ(CC1101_FREQUENCY);
+  }
+
+  void add_cover(const char *name, const char *key, uint32_t remoteCode) {
+    auto cover = new SomfyESPCover(name, key, remoteCode);
+    covers.push_back(cover);
   }
 };
