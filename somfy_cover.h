@@ -1,13 +1,9 @@
 #include "esphome.h"
-#include <EEPROM.h>
-#include <EEPROMRollingCodeStorage.h>
+#include <NVSRollingCodeStorage.h>
 #include <ELECHOUSE_CC1101_SRC_DRV.h>
 #include <SomfyRemote.h>
 
 #define EMITTER_GPIO 2
-//#define EEPROM_ADDRESS 0
-//#define REMOTE 0x5184c9
-#define EEPROM_ADDRESS 2
 #define REMOTE 0x5184c8
 
 #define CC1101_FREQUENCY 433.42
@@ -15,7 +11,7 @@
 #define COVER_OPEN 1.0f
 #define COVER_CLOSED 0.0f
 
-EEPROMRollingCodeStorage rollingCodeStorage(EEPROM_ADDRESS);
+NVSRollingCodeStorage rollingCodeStorage("somfy", "badezimmer");
 SomfyRemote somfyRemote(EMITTER_GPIO, REMOTE, &rollingCodeStorage);
 
 class SomfyCover : public Component, public Cover {
@@ -25,8 +21,6 @@ public:
 
     ELECHOUSE_cc1101.Init();
     ELECHOUSE_cc1101.setMHZ(CC1101_FREQUENCY);
-
-    EEPROM.begin(8);
   }
 
   CoverTraits get_traits() override {

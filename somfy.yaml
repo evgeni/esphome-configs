@@ -4,7 +4,7 @@ esphome:
   board: nodemcu-32s
   libraries:
     - SmartRC-CC1101-Driver-Lib@2.5.6
-    - Somfy_Remote_Lib
+    - git+https://github.com/evgeni/Somfy_Remote_Lib.git#nvs
   includes:
     - somfy_cover.h
 
