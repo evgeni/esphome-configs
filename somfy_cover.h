@@ -1,18 +1,32 @@
 #include "esphome.h"
-#include <Somfy_Remote.h>
+#include <EEPROM.h>
+#include <EEPROMRollingCodeStorage.h>
+#include <ELECHOUSE_CC1101_SRC_DRV.h>
+#include <SomfyRemote.h>
+
+#define EMITTER_GPIO 2
+//#define EEPROM_ADDRESS 0
+//#define REMOTE 0x5184c9
+#define EEPROM_ADDRESS 2
+#define REMOTE 0x5184c8
+
+#define CC1101_FREQUENCY 433.42
 
 #define COVER_OPEN 1.0f
 #define COVER_CLOSED 0.0f
 
-// Array storing the multiple remotes
-SomfyRemote somfyr("remote1", 0x131171); // <- Change remote name and remote code here!
+EEPROMRollingCodeStorage rollingCodeStorage(EEPROM_ADDRESS);
+SomfyRemote somfyRemote(EMITTER_GPIO, REMOTE, &rollingCodeStorage);
 
 class SomfyCover : public Component, public Cover {
-  public:
-
+public:
   void setup() override {
-    // need to set GPIO PIN 4 as OUTPUT, otherwise no commands will be sent
-    pinMode(4, OUTPUT);
+    somfyRemote.setup();
+
+    ELECHOUSE_cc1101.Init();
+    ELECHOUSE_cc1101.setMHZ(CC1101_FREQUENCY);
+
+    EEPROM.begin(8);
   }
 
   CoverTraits get_traits() override {
@@ -23,16 +37,22 @@ class SomfyCover : public Component, public Cover {
     return traits;
   }
 
+  void sendCC1101Command(Command command) {
+    ELECHOUSE_cc1101.SetTx();
+    somfyRemote.sendCommand(command);
+    ELECHOUSE_cc1101.setSidle();
+  }
+
   void control(const CoverCall &call) override {
     if (call.get_position().has_value()) {
       float pos = *call.get_position();
 
       if (pos == COVER_OPEN) {
         ESP_LOGI("somfy", "OPEN");
-        somfyr.move("UP");
+        sendCC1101Command(Command::Up);
       } else if (pos == COVER_CLOSED) {
         ESP_LOGI("somfy", "CLOSE");
-        somfyr.move("DOWN");
+        sendCC1101Command(Command::Down);
       } else {
         ESP_LOGI("somfy", "WAT");
       }
@@ -43,12 +63,12 @@ class SomfyCover : public Component, public Cover {
 
     if (call.get_stop()) {
       ESP_LOGI("somfy", "STOP");
-      somfyr.move("MY");
+      sendCC1101Command(Command::My);
     }
   }
 
   void program() {
     ESP_LOGI("somfy", "PROG");
-    somfyr.move("PROGRAM");
+    sendCC1101Command(Command::Prog);
   }
 };
