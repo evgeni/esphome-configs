@@ -56,3 +56,8 @@ switch:
     turn_on_action:
       - lambda: |-
           ((SomfyCover*)id(somfy))->program();
+  - platform: template
+    name: "STOP"
+    turn_on_action:
+      - lambda: |-
+          ((SomfyCover*)id(somfy))->stop();
