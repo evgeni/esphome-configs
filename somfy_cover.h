@@ -1,6 +1,6 @@
 #include "esphome.h"
-#include <NVSRollingCodeStorage.h>
 #include <ELECHOUSE_CC1101_SRC_DRV.h>
+#include <NVSRollingCodeStorage.h>
 #include <SomfyRemote.h>
 
 #define EMITTER_GPIO 2
@@ -16,7 +16,8 @@ private:
   NVSRollingCodeStorage *storage;
 
 public:
-  SomfyESPCover(const char *name, const char *key, uint32_t remoteCode) : Cover() {
+  SomfyESPCover(const char *name, const char *key, uint32_t remoteCode)
+      : Cover() {
     storage = new NVSRollingCodeStorage(name, key);
     remote = new SomfyRemote(EMITTER_GPIO, remoteCode, storage);
   }
