@@ -9,3 +9,4 @@
 **/partitions.csv
 **/platformio.ini
 /secrets.yaml
+/somfy_secrets.h

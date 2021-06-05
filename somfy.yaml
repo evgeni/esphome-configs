@@ -6,6 +6,7 @@ esphome:
     - SmartRC-CC1101-Driver-Lib@2.5.6
     - git+https://github.com/evgeni/Somfy_Remote_Lib.git#nvs
   includes:
+    - somfy_secrets.h
     - somfy_cover.h
 
 wifi:
@@ -43,8 +44,8 @@ cover:
   - platform: custom
     lambda: |-
       auto somfy_remote = new SomfyESPRemote();
-      somfy_remote->add_cover("somfy", "badezimmer", 0x5184c8);
-      somfy_remote->add_cover("somfy", "kinderzimmer", 0x131171);
+      somfy_remote->add_cover("somfy", "badezimmer", SOMFY_REMOTE_BADEZIMMER);
+      somfy_remote->add_cover("somfy", "kinderzimmer", SOMFY_REMOTE_KINDERZIMMER);
       App.register_component(somfy_remote);
       return somfy_remote->covers;
 
