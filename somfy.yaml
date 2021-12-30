@@ -6,7 +6,7 @@ esphome:
     - EEPROM
     - SPI
     - SmartRC-CC1101-Driver-Lib@2.5.6
-    - Somfy_Remote_Lib@0.4.0
+    - Somfy_Remote_Lib@0.4.1
   includes:
     - somfy_secrets.h
     - somfy_cover.h
