@@ -150,6 +150,7 @@ switch:
     on_turn_off:
       then:
         cover.stop: rolladen
+    optimistic: true
 
   - platform: template
     name: "Move DOWN"
@@ -166,6 +167,7 @@ switch:
     on_turn_off:
       then:
         cover.stop: rolladen
+    optimistic: true
 
 binary_sensor:
   - platform: gpio
