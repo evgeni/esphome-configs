@@ -3,13 +3,7 @@
  * https://github.com/merbanan/rtl_433/blob/master/src/devices/funkbus.c
  */
 
-#include "esphome.h"
-#include <ELECHOUSE_CC1101_SRC_DRV.h>
-
-#define EMITTER_GPIO 2
-#define REMOTE_SERIAL 123456
-
-#define CC1101_FREQUENCY 433.42
+#pragma once
 
 #define LONG_SYM 1000
 #define SHORT_SYM 500
@@ -156,45 +150,5 @@ public:
       delayMicroseconds(2000);
       sendFrame(repeat_frame);
     }
-  }
-};
-
-class FunkbusLight : public Component, public LightOutput {
-public:
-  FunkbusRemote *remote;
-
-  void setup() override {
-    pinMode(EMITTER_GPIO, OUTPUT);
-    digitalWrite(EMITTER_GPIO, LOW);
-
-    ELECHOUSE_cc1101.Init();
-    ELECHOUSE_cc1101.setMHZ(CC1101_FREQUENCY);
-
-    remote = new FunkbusRemote(EMITTER_GPIO, REMOTE_SERIAL);
-  }
-
-  LightTraits get_traits() override {
-    auto traits = LightTraits();
-    traits.set_supported_color_modes({ColorMode::ON_OFF});
-    return traits;
-  }
-
-  void write_state(LightState *state) override {
-    bool light_state;
-    state->current_values_as_binary(&light_state);
-    sendCommand(light_state);
-  }
-
-  void sendCommand(bool state) {
-    ELECHOUSE_cc1101.SetTx();
-
-    uint8_t command = 1;            // we have 0 and 1 here
-    uint8_t action = state ? 1 : 2; // 0=STOP, 1=OFF, 2=ON, 3=SCENE
-    uint8_t group = 0;              // we don't have a group
-    bool longpress = false;
-
-    remote->sendCommand(command, group, action, longpress);
-
-    ELECHOUSE_cc1101.setSidle();
   }
 };
