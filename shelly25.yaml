@@ -65,11 +65,15 @@ sensor:
     irq_pin: GPIO16
     voltage:
       name: Shelly Voltage
+      filters:
+        - throttle: 5s
     current_a:
       name: Shelly Current B
+      id: "current_b"
       internal: true
     current_b:
       name: Shelly Current A
+      id: "current_a"
       internal: true
     active_power_a:
       name: Shelly Active Power B
@@ -83,7 +87,7 @@ sensor:
       internal: true
       filters:
         - multiply: -1
-    update_interval: 60s
+    update_interval: 0.5s
 
   # NTC Temperature
   - platform: ntc
@@ -183,17 +187,23 @@ binary_sensor:
     id: switch2
 
 cover:
-  - platform: time_based
+  - platform: current_based
     name: "${location} Rolladen"
     id: rolladen
 
     open_action:
       - switch.turn_on: ${open_relay}
     open_duration: ${open_duration}
+    open_sensor: ${open_sensor}
+    open_moving_current_threshold: 0.5
 
     close_action:
       - switch.turn_on: ${close_relay}
     close_duration: ${close_duration}
+    close_sensor: ${close_sensor}
+    close_moving_current_threshold: 0.5
+
+    start_sensing_delay: 1s
 
     stop_action:
       - switch.turn_off: ${open_relay}
