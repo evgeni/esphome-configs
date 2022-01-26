@@ -4,10 +4,12 @@ substitutions:
   open_duration: 17sec
   open_switch: switch2
   open_relay: relay1
+  open_sensor: current_a
   open_time: '0 0 6 * * *'
   close_duration: 16sec
   close_switch: switch1
   close_relay: relay2
+  close_sensor: current_b
   <<: !include shelly25-pins.yaml
 
 <<: !include shelly25.yaml
