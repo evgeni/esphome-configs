@@ -215,11 +215,11 @@
         },
         "esphome": {
             "hashes": [
-                "sha256:01d9735287fdc03877006c186095b72c8cd9d07a4b4cad34f6a2d74b8d89da2d",
-                "sha256:f9593a00e2d6b2f06e07798a8b8d9e6b43b171e80a66832d22f5d5e91906f224"
+                "sha256:3ce8e499d9d5d8ec4c290f494ef004eb147783e1e700d0a3225e6a68540d5402",
+                "sha256:a726f3cf120c32723e083b009969eba3542e65d3bfd8c49acf5a02cf73a90250"
             ],
             "index": "pypi",
-            "version": "==2022.1.1"
+            "version": "==2022.1.2"
         },
         "esphome-dashboard": {
             "hashes": [
