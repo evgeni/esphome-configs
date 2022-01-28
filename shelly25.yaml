@@ -195,7 +195,7 @@ cover:
       - switch.turn_on: ${open_relay}
     open_duration: ${open_duration}
     open_sensor: ${open_sensor}
-    open_moving_current_threshold: 0.5
+    open_moving_current_threshold: 0.4
 
     close_action:
       - switch.turn_on: ${close_relay}
