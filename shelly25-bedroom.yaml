@@ -5,7 +5,8 @@ substitutions:
   open_switch: switch1
   open_relay: relay1
   open_sensor: current_a
-  open_time: '0 0 7 * * *'
+  open_time: '0 40 6 * * MON-FRI'
+  open_time_2: '0 0 9 * * SAT-SUN'
   close_duration: 16sec
   close_switch: switch2
   close_relay: relay2

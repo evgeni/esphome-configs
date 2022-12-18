@@ -43,6 +43,13 @@ time:
               switch.is_off: ignore_schedule
             then:
               cover.open: rolladen
+      - cron: ${open_time_2}
+        then:
+          if:
+            condition:
+              switch.is_off: ignore_schedule
+            then:
+              cover.open: rolladen
 
 i2c:
   sda: ${pin_sda}

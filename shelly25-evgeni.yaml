@@ -6,6 +6,7 @@ substitutions:
   open_relay: relay2
   open_sensor: current_b
   open_time: '0 0 7 * * *'
+  open_time_2: '0 0 7 * * *'
   close_duration: 16sec
   close_switch: switch2
   close_relay: relay1
