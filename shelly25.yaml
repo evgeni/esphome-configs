@@ -64,7 +64,8 @@ sun:
           condition:
             switch.is_off: ignore_schedule
           then:
-            cover.close: rolladen
+            - delay: 2h
+            - cover.close: rolladen
 
 
 sensor:
