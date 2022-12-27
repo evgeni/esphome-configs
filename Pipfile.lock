@@ -21,7 +21,7 @@
                 "sha256:1ad93df9f4a54ecfd4323d0c8ae9030ea68a7707419e6822a3b0cad6551e2512",
                 "sha256:70ac03ec2b744e55171a924096951ee3ebf3482d626cbe47d5b0310c9ed16aa8"
             ],
-            "markers": "python_version >= '3.9'",
+            "markers": "python_full_version >= '3.9.0'",
             "version": "==13.0.1"
         },
         "aiofiles": {
@@ -29,7 +29,7 @@
                 "sha256:1142fa8e80dbae46bb6339573ad4c8c0841358f79c6eb50a493dceca14621bad",
                 "sha256:9107f1ca0b2a5553987a94a3c9959fe5b491fdf731389aa5b7b1bd0733e32de6"
             ],
-            "markers": "python_version >= '3.7' and python_version < '4.0'",
+            "markers": "python_version >= '3.7' and python_version < '4'",
             "version": "==22.1.0"
         },
         "ajsonrpc": {
@@ -154,7 +154,7 @@
                 "sha256:5a3d016c7c547f69d6f81fb0db9449ce888b418b5b9952cc5e6e66843e9dd845",
                 "sha256:83e9a75d1911279afd89352c68b45348559d1fc0506b054b346651b5e7fee29f"
             ],
-            "markers": "python_full_version >= '3.6.0'",
+            "markers": "python_version >= '3.6'",
             "version": "==2.1.1"
         },
         "click": {
@@ -215,11 +215,11 @@
         },
         "esphome": {
             "hashes": [
-                "sha256:03fbff399a78cbe1d791a1bcbf87d2678fa2ed6b8addf3896b6ba6cfe3e7d824",
-                "sha256:8fae593c414127e391d535e7c2ffff1e6de13639a9d2a061477e8d26571d7813"
+                "sha256:8bff69e449d62e1a90ea72ace5f3ad31de2faac7336c6e95ed31b613ae72365d",
+                "sha256:f4cd97261cf6e0ba42e436ac694da4dc75705aaafded8098003093743481b196"
             ],
             "index": "pypi",
-            "version": "==2022.12.1"
+            "version": "==2022.12.3"
         },
         "esphome-dashboard": {
             "hashes": [
@@ -515,7 +515,7 @@
                 "sha256:ad565f26ecb92588a3e43bc3d96164de84cd9902482b130d0ddbaa9664a85065",
                 "sha256:b9acddd652b585d75b20477888c56642fdade28bdfd3579aa24a4d2c037dd736"
             ],
-            "markers": "python_full_version >= '3.7.0'",
+            "markers": "python_version >= '3.7'",
             "version": "==1.2.0"
         },
         "zeroconf": {
