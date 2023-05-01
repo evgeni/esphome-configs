@@ -13,4 +13,4 @@ substitutions:
   close_sensor: current_b
   <<: !include _shelly25-pins.yaml
 
-<<: !include shelly25.yaml
+<<: !include _shelly25.yaml
