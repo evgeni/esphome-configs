@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - devel
+    tags:
+      - '**'
+  pull_request:
+
+concurrency:
+  group: ${{ github.ref_name }}-${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  data:
+    runs-on: ubuntu-22.04
+    outputs:
+      python: ${{ steps.python.outputs.python }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Find Python version
+        id: python
+        run: echo "python=$(grep python_version Pipfile | cut -d= -f 2 | tr -d '\" ')" >> "$GITHUB_OUTPUT"
+
+  build:
+    runs-on: ubuntu-22.04
+    needs: data
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ needs.data.outputs.python }}
+      - run: cp somfy_secrets.h.example somfy_secrets.h
+      - run: cp secrets.yaml.example secrets.yaml
+      - run: pip install pipenv
+      - run: pipenv sync
+      - run: pipenv run esphome compile somfy.yaml
