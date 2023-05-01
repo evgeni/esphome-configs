@@ -17,15 +17,23 @@ jobs:
     runs-on: ubuntu-22.04
     outputs:
       python: ${{ steps.python.outputs.python }}
+      targets: ${{ steps.targets.outputs.targets }}
     steps:
       - uses: actions/checkout@v3
+      - run: sudo apt-get install -y jo
       - name: Find Python version
         id: python
         run: echo "python=$(grep python_version Pipfile | cut -d= -f 2 | tr -d '\" ')" >> "$GITHUB_OUTPUT"
+      - name: Find compile targets
+        id: targets
+        run: echo "targets=$(jo -a $(git ls-files '*.yaml' |grep -v '^_'))" >> "$GITHUB_OUTPUT"
 
   build:
     runs-on: ubuntu-22.04
     needs: data
+    strategy:
+      matrix:
+        target: ${{ fromJson(needs.data.outputs.targets) }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
@@ -35,4 +43,4 @@ jobs:
       - run: cp secrets.yaml.example secrets.yaml
       - run: pip install pipenv
       - run: pipenv sync
-      - run: pipenv run esphome compile somfy.yaml
+      - run: pipenv run esphome compile ${{ matrix.target }}
