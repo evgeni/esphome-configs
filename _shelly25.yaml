@@ -3,6 +3,7 @@ esphome:
 
 esp8266:
   board: modwifi
+  restore_from_flash: true
 
 wifi:
   ssid: !secret wifi_ssid
@@ -143,11 +144,15 @@ switch:
     id: block_control
     name: "${location} Block Control"
     optimistic: true
+    restore_state: true
+    restore_mode: RESTORE_DEFAULT_ON
 
   - platform: template
     id: ignore_schedule
     name: "${location} Ignore Schedule"
     optimistic: true
+    restore_state: true
+    restore_mode: RESTORE_DEFAULT_ON
 
   - platform: template
     name: "Move UP"
