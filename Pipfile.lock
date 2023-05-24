@@ -280,11 +280,11 @@
         },
         "esphome": {
             "hashes": [
-                "sha256:e50517c77b5da5e08a94463dcd7ade472d1eff6465f7d45f328583509a40e5c5",
-                "sha256:edd268239a224ff37dd78b244ca8ebb630f5d301f492c574121eeb7229e9970f"
+                "sha256:919c06c0948b54a51c67b2fb6231408373a98ee8ee8ec183d25adf42d0a31946",
+                "sha256:d2f13a88248e10ed953e1a1f5edb5391fcd9c7f2990eff3bd2148dbe93e969b5"
             ],
             "index": "pypi",
-            "version": "==2023.5.3"
+            "version": "==2023.5.4"
         },
         "esphome-dashboard": {
             "hashes": [
