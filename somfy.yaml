@@ -68,7 +68,7 @@ switch:
     name: "STOP"
     turn_on_action:
       - lambda: |-
-          ((SomfyESPCover*)id(somfy))->make_call().set_command_stop();
+          ((SomfyESPCover*)id(somfy))->make_call().set_command_stop().perform();
   - platform: template
     name: "PROG2"
     turn_on_action:
@@ -78,4 +78,4 @@ switch:
     name: "STOP2"
     turn_on_action:
       - lambda: |-
-          ((SomfyESPCover*)id(somfy2))->make_call().set_command_stop();
+          ((SomfyESPCover*)id(somfy2))->make_call().set_command_stop().perform();
