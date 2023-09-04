@@ -19,7 +19,7 @@ jobs:
       python: ${{ steps.python.outputs.python }}
       targets: ${{ steps.targets.outputs.targets }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: sudo apt-get install -y jo
       - name: Find Python version
         id: python
@@ -35,7 +35,7 @@ jobs:
       matrix:
         target: ${{ fromJson(needs.data.outputs.targets) }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-python@v4
         with:
           python-version: ${{ needs.data.outputs.python }}
