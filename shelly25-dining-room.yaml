@@ -1,5 +1,5 @@
 substitutions:
-  devicename: shelly25_dining_room
+  devicename: shelly25-dining-room
   location: Dining Room
   open_duration: 42sec
   open_switch: switch1
