@@ -496,12 +496,12 @@
         },
         "esphome": {
             "hashes": [
-                "sha256:38e319d7b2c8b15b13d04fae2e7353f74a1d05df94180edaae10e5c23fd8dd65",
-                "sha256:889f5fca6dc919ccb0e476d476ada79762184982ec6aef0234a5fae8e5b91922"
+                "sha256:375c3ee10cd757627231a555299879c44c69f75bc25a2c41aa8db8071054f82b",
+                "sha256:5557bf5730257c90a6a9bddb6b464017bfa260339186c28d3b5efbbc71521fc5"
             ],
             "index": "pypi",
             "markers": "python_full_version >= '3.9.0'",
-            "version": "==2023.12.1"
+            "version": "==2023.12.3"
         },
         "esphome-dashboard": {
             "hashes": [
