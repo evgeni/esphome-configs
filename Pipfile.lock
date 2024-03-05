@@ -505,12 +505,12 @@
         },
         "esphome": {
             "hashes": [
-                "sha256:0552ecb8acf2c7a06c33ade9fa9b7a6a0ecee166036520f61f2dc09ba17a1fe7",
-                "sha256:65fa0bf0f855bae5abb2c645c5747cc5ae006ba62f2f6b86aa98d0b78847e202"
+                "sha256:4611dab7f4de0f5f68e70a3abbdec6c6d45f7710640bddc63791502a9eadb4b3",
+                "sha256:cc05109a62920f8f8b6f5360061ea4862d1f054a3965fbd70e32454bd3f82e37"
             ],
             "index": "pypi",
             "markers": "python_full_version >= '3.9.0'",
-            "version": "==2024.2.1"
+            "version": "==2024.2.2"
         },
         "esphome-dashboard": {
             "hashes": [
@@ -582,11 +582,11 @@
         },
         "marshmallow": {
             "hashes": [
-                "sha256:20f53be28c6e374a711a16165fb22a8dc6003e3f7cda1285e3ca777b9193885b",
-                "sha256:e7997f83571c7fd476042c2c188e4ee8a78900ca5e74bd9c8097afa56624e9bd"
+                "sha256:4e65e9e0d80fc9e609574b9983cf32579f305c718afb30d7233ab818571768c3",
+                "sha256:f085493f79efb0644f270a9bf2892843142d80d7174bbbd2f3713f2a589dc633"
             ],
             "markers": "python_version >= '3.8'",
-            "version": "==3.21.0"
+            "version": "==3.21.1"
         },
         "noiseprotocol": {
             "hashes": [
