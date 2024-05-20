@@ -513,12 +513,12 @@
         },
         "esphome": {
             "hashes": [
-                "sha256:57672d05213c58b10352342000e53cf3d381a2b8122fa5eb174deba4c6dd17ed",
-                "sha256:a637180761488793e67f117a93e89da9390045c809c5e3901c29e25193eb4d04"
+                "sha256:d7e8d133ae62e17cf2beb0d31bed7ad7cd604001f1f5d03cfcb5c59adede4efd",
+                "sha256:f40ffe6aae8c056e2c67a97d93c0947d2425ecc87457d40b2a22beaaf4b99915"
             ],
             "index": "pypi",
             "markers": "python_full_version >= '3.9.0'",
-            "version": "==2024.5.0"
+            "version": "==2024.5.1"
         },
         "esphome-dashboard": {
             "hashes": [
@@ -746,11 +746,11 @@
         },
         "requests": {
             "hashes": [
-                "sha256:58cd2187c01e70e6e26505bca751777aa9f2ee0b7f4300988b709f44e013003f",
-                "sha256:942c5a758f98d790eaed1a29cb6eefc7ffb0d1cf7af05c3d2791656dbd6ad1e1"
+                "sha256:21ac9465cdf8c1650fe1ecde8a71669a93d4e6f147550483a2967d08396a56a5",
+                "sha256:eb97e87e64c79e64e5b8ac75cee9dd1f97f49e289b083ee6be96268930725685"
             ],
-            "markers": "python_version >= '3.7'",
-            "version": "==2.31.0"
+            "markers": "python_version >= '3.8'",
+            "version": "==2.32.1"
         },
         "ruamel.yaml": {
             "hashes": [
