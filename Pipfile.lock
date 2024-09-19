@@ -47,11 +47,11 @@
         },
         "anyio": {
             "hashes": [
-                "sha256:5aadc6a1bbb7cdb0bede386cac5e2940f5e2ff3aa20277e991cf028e0585ce94",
-                "sha256:c1b2d8f46a8a812513012e1107cb0e68c17159a7a594208005a57dc776e1bdc7"
+                "sha256:c5a275fe5ca0afd788001f58fca1e69e29ce706d746e317d660e21f70c530ef9",
+                "sha256:fdeb095b7cc5a5563175eedd926ec4ae55413bb4be5770c424af0ba46ccb4a78"
             ],
             "markers": "python_version >= '3.8'",
-            "version": "==4.4.0"
+            "version": "==4.5.0"
         },
         "argcomplete": {
             "hashes": [
@@ -467,7 +467,6 @@
                 "sha256:a3e032363b65798ad51ee8bfd33d705653f9824d081309d71927bd67a124cf13"
             ],
             "index": "pypi",
-            "markers": "python_full_version >= '3.9.0'",
             "version": "==2024.9.0"
         },
         "esphome-dashboard": {
