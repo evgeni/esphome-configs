@@ -31,11 +31,11 @@
         },
         "aiohappyeyeballs": {
             "hashes": [
-                "sha256:4ca893e6c5c1f5bf3888b04cb5a3bee24995398efef6e0b9f747b5e89d84fd74",
-                "sha256:8522691d9a154ba1145b157d6d5c15e5c692527ce6a53c5e5f9876977f6dab2f"
+                "sha256:75cf88a15106a5002a8eb1dab212525c00d1f4c0fa96e551c9fbe6f09a621586",
+                "sha256:8a7a83727b2756f394ab2895ea0765a0a8c475e3c71e98d43d76f22b4b435572"
             ],
             "markers": "python_version >= '3.8'",
-            "version": "==2.4.2"
+            "version": "==2.4.3"
         },
         "ajsonrpc": {
             "hashes": [
@@ -463,11 +463,12 @@
         },
         "esphome": {
             "hashes": [
-                "sha256:b8c7f0e613bc9ad45364136eef706365f4595aeb06775811b06d2c3b95b6624a",
-                "sha256:dcc9de58dcb6b33268ddaeab4b78885063e8be35f6d8fa6a9af701855ee25b40"
+                "sha256:c5371a70accf0b87e65014c8a7f4ceda74120060a638d3bd2f23181c64cf7cab",
+                "sha256:caa9569b11706d3ac593372ffec80521af032b30348ae7e2f2b78fe6fe9a401a"
             ],
             "index": "pypi",
-            "version": "==2024.9.1"
+            "markers": "python_full_version >= '3.9.0'",
+            "version": "==2024.9.2"
         },
         "esphome-dashboard": {
             "hashes": [
