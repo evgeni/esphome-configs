@@ -517,18 +517,19 @@
         },
         "esphome": {
             "hashes": [
-                "sha256:03c09eea601454e4dac69e918e4de6fd1b7f713746c512207ddca9d4cab5b671",
-                "sha256:f6070f938376b9d65bf8c33f96185590883fdf1af60e19d5be7e45884b2a2119"
+                "sha256:b6d012c7307d8925ad5f9a99f05eb460fb7d686a156d68e8f78ea0dc99b76c7d",
+                "sha256:f5108b26f7dbd55a97c671b02a3dcced20e682c7b6679c02a3d422b499b32bef"
             ],
             "index": "pypi",
-            "version": "==2024.11.3"
+            "markers": "python_full_version >= '3.9.0'",
+            "version": "==2024.12.0"
         },
         "esphome-dashboard": {
             "hashes": [
-                "sha256:5a2b54440879f314f99164d76eb1b056a6091e0aebc8b5232637972a02b275fc",
-                "sha256:ffaca722250d75bec945c32edb4187dfa44d1dc7931657a09691375ad2c44b89"
+                "sha256:3f08a16b203fb67c0bfaac7032b865002ee4e843a7c148f1fc65704a0b9174fb",
+                "sha256:fc996c6e76dcf41af66cad79f95b8e8c2620920dc49b191a1ff3ac9e4bb2a42a"
             ],
-            "version": "==20241120.0"
+            "version": "==20241217.1"
         },
         "esptool": {
             "hashes": [
@@ -547,7 +548,9 @@
         },
         "fonttools": {
             "extras": [
-                "ufo"
+                "ufo",
+                "ufo",
+                "unicode"
             ],
             "hashes": [
                 "sha256:07f8288aacf0a38d174445fc78377a97fb0b83cfe352a90c9d9c1400571963c7",
@@ -1241,7 +1244,7 @@
                 "sha256:4b15decdda1e72be08209e860a1e10e92439ad5b97cf44cc945fcbee66fc5788",
                 "sha256:65fd46fe3fda5bdc1b03b94eb634923ff18cd35b2f084813ea79d1f103f711b5"
             ],
-            "markers": "python_version >= '3.7'",
+            "markers": "python_version >= '3.8'",
             "version": "==0.30.6"
         },
         "voluptuous": {
