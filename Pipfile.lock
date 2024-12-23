@@ -517,12 +517,12 @@
         },
         "esphome": {
             "hashes": [
-                "sha256:86aee587ccb760c5122ec79d0448f1845695b444552df39b989ece7c80b5f781",
-                "sha256:caea29171c40ef4e627c7ca00c3aa78430285b8b9ad3a5ec08fa12895a38892b"
+                "sha256:681ce7eadf23584f16817f6461645c908a10b3a9940bd6bb49ae44dea1760122",
+                "sha256:bcee062a3d73c8d395638a5727d43b1b0a9985ba1bd36021effdaba5dfb385e1"
             ],
             "index": "pypi",
             "markers": "python_full_version >= '3.9.0'",
-            "version": "==2024.12.1"
+            "version": "==2024.12.2"
         },
         "esphome-dashboard": {
             "hashes": [
@@ -548,7 +548,6 @@
         },
         "fonttools": {
             "extras": [
-                "ufo",
                 "ufo",
                 "unicode"
             ],
@@ -1233,11 +1232,11 @@
         },
         "urllib3": {
             "hashes": [
-                "sha256:ca899ca043dcb1bafa3e262d73aa25c465bfb49e0bd9dd5d59f1d0acba2f8fac",
-                "sha256:e7d814a81dad81e6caf2ec9fdedb284ecc9c73076b62654547cc64ccdcae26e9"
+                "sha256:1cee9ad369867bfdbbb48b7dd50374c0967a0bb7710050facf0dd6911440e3df",
+                "sha256:f8c5449b3cf0861679ce7e0503c7b44b5ec981bec0d1d3795a07f1ba96f0204d"
             ],
-            "markers": "python_version >= '3.8'",
-            "version": "==2.2.3"
+            "markers": "python_version >= '3.9'",
+            "version": "==2.3.0"
         },
         "uvicorn": {
             "hashes": [
