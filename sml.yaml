@@ -19,8 +19,6 @@ captive_portal:
 
 # Enable logging
 logger:
-  logs:
-    sml: DEBUG
 
 # Enable Home Assistant API
 api:
