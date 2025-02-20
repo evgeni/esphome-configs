@@ -1,11 +1,12 @@
 esphome:
   name: funkbus
-  platform: ESP32
-  board: nodemcu-32s
   libraries:
     - EEPROM
     - SPI
     - SmartRC-CC1101-Driver-Lib@2.5.7
+
+esp32:
+  board: nodemcu-32s
 
 external_components:
   - source:
