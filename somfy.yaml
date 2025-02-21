@@ -56,6 +56,22 @@ text_sensor:
     name: "ESPHome Version"
     hide_timestamp: true
 
+light:
+  - platform: funkbus
+    serial: !secret funkbus_serial
+    switch: 0
+    name: "Wohnzimmer - Sofa"
+    pin:
+      number: GPIO2
+      allow_other_uses: true
+  - platform: funkbus
+    serial: !secret funkbus_serial
+    switch: 1
+    name: "Wohnzimmer - TV"
+    pin:
+      number: GPIO2
+      allow_other_uses: true
+
 cover:
   - platform: somfy
     name: Badezimmer
