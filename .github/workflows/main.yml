@@ -41,7 +41,6 @@ jobs:
         with:
           python-version: ${{ needs.data.outputs.python }}
           cache: 'pipenv'
-      - run: cp somfy_secrets.h.example somfy_secrets.h
       - run: cp secrets.yaml.example secrets.yaml
       - run: pip install pipenv
       - run: pipenv sync

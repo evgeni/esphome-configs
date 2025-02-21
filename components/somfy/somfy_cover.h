@@ -1,0 +1,95 @@
+#pragma once
+
+#include "esphome/components/cover/cover.h"
+#include "esphome/core/component.h"
+#include <ELECHOUSE_CC1101_SRC_DRV.h>
+#include <NVSRollingCodeStorage.h>
+#include <SomfyRemote.h>
+
+#define CC1101_FREQUENCY 433.42
+
+namespace esphome {
+namespace somfy {
+
+using namespace esphome::cover;
+
+static const char *const TAG = "somfy.cover";
+
+class SomfyCover : public Cover, public Component {
+protected:
+  SomfyRemote *remote_;
+  NVSRollingCodeStorage *storage_;
+  const char *storage_namespace_;
+  const char *storage_key_;
+  InternalGPIOPin *emitter_pin_;
+  uint32_t remote_address_;
+
+public:
+  void setup() override {
+    this->emitter_pin_->pin_mode(gpio::FLAG_OUTPUT);
+    this->emitter_pin_->digital_write(false);
+
+    ELECHOUSE_cc1101.Init();
+    ELECHOUSE_cc1101.setMHZ(CC1101_FREQUENCY);
+
+    storage_ = new NVSRollingCodeStorage(storage_namespace_, storage_key_);
+    remote_ = new SomfyRemote(emitter_pin_->get_pin(), remote_address_, storage_);
+  }
+
+  CoverTraits get_traits() override {
+    auto traits = CoverTraits();
+    traits.set_is_assumed_state(true);
+    traits.set_supports_position(false);
+    traits.set_supports_tilt(false);
+    traits.set_supports_stop(true);
+    return traits;
+  }
+
+  void sendCC1101Command(Command command) {
+    ELECHOUSE_cc1101.SetTx();
+    remote_->sendCommand(command);
+    ELECHOUSE_cc1101.setSidle();
+  }
+
+  void control(const CoverCall &call) override {
+    if (call.get_position().has_value()) {
+      float pos = *call.get_position();
+
+      if (pos == COVER_OPEN) {
+        ESP_LOGI(TAG, "OPEN");
+        sendCC1101Command(Command::Up);
+      } else if (pos == COVER_CLOSED) {
+        ESP_LOGI(TAG, "CLOSE");
+        sendCC1101Command(Command::Down);
+      } else {
+        ESP_LOGI(TAG, "WAT");
+      }
+
+      this->position = pos;
+      this->publish_state();
+    }
+
+    if (call.get_stop()) {
+      ESP_LOGI(TAG, "STOP");
+      sendCC1101Command(Command::My);
+    }
+  }
+
+  void program() {
+    ESP_LOGI(TAG, "PROG");
+    sendCC1101Command(Command::Prog);
+  }
+
+  void set_pin(InternalGPIOPin *pin) { this->emitter_pin_ = pin; }
+
+  void set_remote_address(uint32_t remote_address) { this->remote_address_ = remote_address; }
+  void set_storage_namespace(const char *storage_namespace) {
+    this->storage_namespace_ = storage_namespace;
+  }
+  void set_storage_key(const char *storage_key) {
+    this->storage_key_ = storage_key;
+  }
+};
+
+} // namespace somfy
+} // namespace esphome

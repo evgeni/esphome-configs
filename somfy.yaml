@@ -6,12 +6,14 @@ esphome:
     - SPI
     - SmartRC-CC1101-Driver-Lib@2.5.7
     - Somfy_Remote_Lib@0.4.1
-  includes:
-    - somfy_secrets.h
-    - somfy_cover.h
 
 esp32:
   board: nodemcu-32s
+
+external_components:
+  - source:
+      type: local
+      path: components
 
 wifi:
   ssid: !secret wifi_ssid
@@ -55,38 +57,32 @@ text_sensor:
     hide_timestamp: true
 
 cover:
-  - platform: custom
-    lambda: |-
-      auto somfy_remote = new SomfyESPRemote();
-      somfy_remote->add_cover("somfy", "badezimmer", SOMFY_REMOTE_BADEZIMMER);
-      somfy_remote->add_cover("somfy", "kinderzimmer", SOMFY_REMOTE_KINDERZIMMER);
-      App.register_component(somfy_remote);
-      return somfy_remote->covers;
+  - platform: somfy
+    name: Badezimmer
+    id: badezimmer
+    storage_key: badezimmer
+    remote_address: !secret somfy_address_badezimmer
+    pin:
+      number: GPIO2
+      allow_other_uses: true
 
-    covers:
-      - id: "somfy"
-        name: "Somfy Cover"
-      - id: "somfy2"
-        name: "Somfy Cover2"
+  - platform: somfy
+    name: Kinderzimmer
+    id: kinderzimmer
+    storage_key: kinderzimmer
+    remote_address: !secret somfy_address_kinderzimmer
+    pin:
+      number: GPIO2
+      allow_other_uses: true
 
 switch:
   - platform: template
-    name: "PROG"
+    name: "PROG Badezimmer"
     turn_on_action:
       - lambda: |-
-          ((SomfyESPCover*)id(somfy))->program();
+          id(badezimmer)->program();
   - platform: template
-    name: "STOP"
+    name: "PROG Kinderzimmer"
     turn_on_action:
       - lambda: |-
-          ((SomfyESPCover*)id(somfy))->make_call().set_command_stop().perform();
-  - platform: template
-    name: "PROG2"
-    turn_on_action:
-      - lambda: |-
-          ((SomfyESPCover*)id(somfy2))->program();
-  - platform: template
-    name: "STOP2"
-    turn_on_action:
-      - lambda: |-
-          ((SomfyESPCover*)id(somfy2))->make_call().set_command_stop().perform();
+          id(kinderzimmer)->program();
