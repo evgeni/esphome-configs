@@ -91,14 +91,14 @@ cover:
       number: GPIO2
       allow_other_uses: true
 
-switch:
+button:
   - platform: template
     name: "PROG Badezimmer"
-    turn_on_action:
+    on_press:
       - lambda: |-
           id(badezimmer)->program();
   - platform: template
     name: "PROG Kinderzimmer"
-    turn_on_action:
+    on_press:
       - lambda: |-
           id(kinderzimmer)->program();
