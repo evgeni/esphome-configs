@@ -91,6 +91,15 @@ cover:
       number: GPIO2
       allow_other_uses: true
 
+  - platform: somfy
+    name: Bedroom
+    id: bedroom
+    storage_key: bedroom
+    remote_address: !secret somfy_address_bedroom
+    pin:
+      number: GPIO2
+      allow_other_uses: true
+
 button:
   - platform: template
     name: "PROG Badezimmer"
@@ -102,3 +111,8 @@ button:
     on_press:
       - lambda: |-
           id(kinderzimmer)->program();
+  - platform: template
+    name: "PROG Bedroom"
+    on_press:
+      - lambda: |-
+          id(bedroom)->program();
