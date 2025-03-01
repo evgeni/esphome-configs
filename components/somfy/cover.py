@@ -4,6 +4,8 @@ from esphome.components import cover
 from esphome.const import CONF_ID
 from esphome import pins
 
+DEPENDENCIES = ["esp32"]
+
 somfy_ns = cg.esphome_ns.namespace("somfy")
 SomfyCover = somfy_ns.class_("SomfyCover", cover.Cover, cg.Component)
 
