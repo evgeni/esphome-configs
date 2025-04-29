@@ -13,6 +13,7 @@ CONF_SOMFY_REMOTE_ADDRESS = "remote_address"
 CONF_SOMFY_PIN = "pin"
 CONF_SOMFY_STORAGE_KEY = "storage_key"
 CONF_SOMFY_STORAGE_NAMESPACE = "storage_namespace"
+CONF_SOMFY_REPEAT = "repeat"
 
 CONFIG_SCHEMA = cover.COVER_SCHEMA.extend(
     {
@@ -23,6 +24,7 @@ CONFIG_SCHEMA = cover.COVER_SCHEMA.extend(
         cv.Optional(CONF_SOMFY_STORAGE_NAMESPACE, default="somfy"): cv.All(
             cv.string, cv.Length(max=15)
         ),
+        cv.Optional(CONF_SOMFY_REPEAT, default=4): cv.int_range(min=1, max=16),
     }
 ).extend(cv.COMPONENT_SCHEMA)
 
@@ -37,3 +39,4 @@ async def to_code(config):
     cg.add(var.set_remote_address(config[CONF_SOMFY_REMOTE_ADDRESS]))
     cg.add(var.set_storage_key(config[CONF_SOMFY_STORAGE_KEY]))
     cg.add(var.set_storage_namespace(config[CONF_SOMFY_STORAGE_NAMESPACE]))
+    cg.add(var.set_repeat(config[CONF_SOMFY_REPEAT]))

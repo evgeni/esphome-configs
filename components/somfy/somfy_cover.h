@@ -23,6 +23,7 @@ protected:
   const char *storage_key_;
   InternalGPIOPin *emitter_pin_;
   uint32_t remote_address_;
+  int repeat_;
 
 public:
   void setup() override {
@@ -47,7 +48,7 @@ public:
 
   void sendCC1101Command(Command command) {
     ELECHOUSE_cc1101.SetTx();
-    remote_->sendCommand(command);
+    remote_->sendCommand(command, this->repeat_);
     ELECHOUSE_cc1101.setSidle();
   }
 
@@ -89,6 +90,7 @@ public:
   void set_storage_key(const char *storage_key) {
     this->storage_key_ = storage_key;
   }
+  void set_repeat(int repeat) { this->repeat_ = repeat; }
 };
 
 } // namespace somfy
