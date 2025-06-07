@@ -1,7 +1,6 @@
 import esphome.config_validation as cv
 import esphome.codegen as cg
 from esphome.components import cover
-from esphome.const import CONF_ID
 from esphome import pins
 
 DEPENDENCIES = ["esp32"]
@@ -15,9 +14,8 @@ CONF_SOMFY_STORAGE_KEY = "storage_key"
 CONF_SOMFY_STORAGE_NAMESPACE = "storage_namespace"
 CONF_SOMFY_REPEAT = "repeat"
 
-CONFIG_SCHEMA = cover.COVER_SCHEMA.extend(
+CONFIG_SCHEMA = cover.cover_schema(SomfyCover).extend(
     {
-        cv.GenerateID(): cv.declare_id(SomfyCover),
         cv.Required(CONF_SOMFY_PIN): pins.internal_gpio_output_pin_schema,
         cv.Required(CONF_SOMFY_REMOTE_ADDRESS): cv.int_,
         cv.Required(CONF_SOMFY_STORAGE_KEY): cv.All(cv.string, cv.Length(max=15)),
@@ -30,9 +28,8 @@ CONFIG_SCHEMA = cover.COVER_SCHEMA.extend(
 
 
 async def to_code(config):
-    var = cg.new_Pvariable(config[CONF_ID])
+    var = await cover.new_cover(config)
     await cg.register_component(var, config)
-    await cover.register_cover(var, config)
 
     pin = await cg.gpio_pin_expression(config[CONF_SOMFY_PIN])
     cg.add(var.set_pin(pin))
