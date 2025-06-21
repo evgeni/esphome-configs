@@ -1,0 +1,16 @@
+substitutions:
+  devicename: shelly25-living-room-door
+  location: Living Room Balcony Door
+  open_duration: 42sec
+  open_switch: switch1
+  open_relay: relay1
+  open_sensor: current_a
+  open_time: '0 0 7 * * *'
+  open_time_2: '0 0 7 * * *'
+  close_duration: 42sec
+  close_switch: switch2
+  close_relay: relay2
+  close_sensor: current_b
+  <<: !include _shelly25-pins.yaml
+
+<<: !include _shelly25.yaml
