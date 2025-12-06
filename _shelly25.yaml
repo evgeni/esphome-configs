@@ -216,13 +216,13 @@ cover:
       - switch.turn_on: ${open_relay}
     open_duration: ${open_duration}
     open_sensor: ${open_sensor}
-    open_moving_current_threshold: 0.4
+    open_moving_current_threshold: 0.1
 
     close_action:
       - switch.turn_on: ${close_relay}
     close_duration: ${close_duration}
     close_sensor: ${close_sensor}
-    close_moving_current_threshold: 0.5
+    close_moving_current_threshold: 0.1
 
     start_sensing_delay: 1s
 
