@@ -632,12 +632,12 @@
         },
         "esphome": {
             "hashes": [
-                "sha256:8f6453a68ddde48e49db3f85b19ce7063aab73cdb625980994c6602478a5dc3e",
-                "sha256:d4433daac71e8fc468d3ffc42dbbc06db8aafcd30152ab8249056a8ae62e4f17"
+                "sha256:15943a07a87dc48749fdcbe67f1b69527ea2e0ca5f647ada92d8bc1659f37f21",
+                "sha256:9f47f158b6db4d0035f2f3827f11a4393f56ce6d0529e857e37c045f28e523de"
             ],
             "index": "pypi",
             "markers": "python_full_version >= '3.11.0' and python_version < '3.14'",
-            "version": "==2025.11.4"
+            "version": "==2025.11.5"
         },
         "esphome-dashboard": {
             "hashes": [
@@ -1331,11 +1331,11 @@
         },
         "urllib3": {
             "hashes": [
-                "sha256:c90f7a39f716c572c4e3e58509581ebd83f9b59cced005b7db7ad2d22b0db99f",
-                "sha256:cb9bcef5a4b345d5da5d145dc3e30834f58e8018828cbc724d30b4cb7d4d49f1"
+                "sha256:5379eb6e1aba4088bae84f8242960017ec8d8e3decf30480b3a1abdaa9671a3f",
+                "sha256:e67d06fe947c36a7ca39f4994b08d73922d40e6cca949907be05efa6fd75110b"
             ],
             "markers": "python_version >= '3.9'",
-            "version": "==2.6.0"
+            "version": "==2.6.1"
         },
         "uvicorn": {
             "hashes": [
