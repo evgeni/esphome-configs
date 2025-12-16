@@ -7,6 +7,8 @@
 #include "funkbus_remote.h"
 #include <ELECHOUSE_CC1101_SRC_DRV.h>
 
+static const char *const TAG = "funkbus.light";
+
 namespace esphome {
 namespace funkbus {
 
@@ -22,10 +24,17 @@ public:
     this->emitterPin->pin_mode(gpio::FLAG_OUTPUT);
     this->emitterPin->digital_write(false);
 
+    ELECHOUSE_cc1101.setSpiPin(18, 19, 23, 5);
     ELECHOUSE_cc1101.Init();
     ELECHOUSE_cc1101.setMHZ(CC1101_FREQUENCY);
 
-    remote = new FunkbusRemote(emitterPin->get_pin(), serial);
+    if (ELECHOUSE_cc1101.getCC1101()) {
+      ESP_LOGI(TAG, "CC1101 Connection OK");
+    } else {
+      ESP_LOGE(TAG, "CC1101 Connection Error");
+    }
+
+    remote = new FunkbusRemote(emitterPin, serial);
   }
 
   light::LightTraits get_traits() override {
