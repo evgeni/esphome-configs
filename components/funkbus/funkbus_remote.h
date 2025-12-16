@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include "esphome/core/gpio.h"
 #define LONG_SYM 1000
 #define SHORT_SYM 500
 
@@ -14,11 +15,11 @@
 
 class FunkbusRemote {
 private:
-  byte emitterPin;
+  esphome::InternalGPIOPin *emitterPin;
   uint32_t serial;
 
 public:
-  FunkbusRemote(byte emitterPin, uint32_t serial)
+  FunkbusRemote(esphome::InternalGPIOPin* emitterPin, uint32_t serial)
       : emitterPin(emitterPin), serial(serial) {}
 
   static int parity8(uint8_t byte) {
@@ -88,18 +89,18 @@ public:
   }
 
   void sendHigh(uint16_t durationInMicroseconds) {
-    digitalWrite(emitterPin, HIGH);
+    emitterPin->digital_write(HIGH);
     delayMicroseconds(durationInMicroseconds);
   }
 
   void sendLow(uint16_t durationInMicroseconds) {
-    digitalWrite(emitterPin, LOW);
+    emitterPin->digital_write(LOW);
     delayMicroseconds(durationInMicroseconds);
   }
 
   void sendFrame(byte *frame) {
     byte line_state = 0;
-    digitalWrite(emitterPin, LOW);
+    emitterPin->digital_write(LOW);
 
     // sync
     sendHigh(4000);
@@ -134,7 +135,7 @@ public:
       sendLow(SHORT_SYM);
     }
 
-    digitalWrite(emitterPin, LOW);
+    emitterPin->digital_write(LOW);
   }
 
   void sendCommand(uint8_t command, uint8_t group, uint8_t action,
