@@ -1,11 +1,8 @@
 #pragma once
 
-#define CC1101_FREQUENCY 433.42
-
 #include "esphome/components/light/light_output.h"
 #include "esphome/core/component.h"
 #include "funkbus_remote.h"
-#include <ELECHOUSE_CC1101_SRC_DRV.h>
 
 static const char *const TAG = "funkbus.light";
 
@@ -24,16 +21,6 @@ public:
     this->emitterPin->pin_mode(gpio::FLAG_OUTPUT);
     this->emitterPin->digital_write(false);
 
-    ELECHOUSE_cc1101.setSpiPin(18, 19, 23, 5);
-    ELECHOUSE_cc1101.Init();
-    ELECHOUSE_cc1101.setMHZ(CC1101_FREQUENCY);
-
-    if (ELECHOUSE_cc1101.getCC1101()) {
-      ESP_LOGI(TAG, "CC1101 Connection OK");
-    } else {
-      ESP_LOGE(TAG, "CC1101 Connection Error");
-    }
-
     remote = new FunkbusRemote(emitterPin, serial);
   }
 
@@ -50,14 +37,14 @@ public:
   }
 
   void sendCommand(bool state) {
-    ELECHOUSE_cc1101.SetTx();
+    //CC1101Component::begin_tx();
 
     uint8_t action = state ? 1 : 2; // 0=STOP, 1=OFF, 2=ON, 3=SCENE
     bool longpress = false;
 
     remote->sendCommand(this->command, this->group, action, longpress);
 
-    ELECHOUSE_cc1101.setSidle();
+    //CC1101Component::set_idle();
   }
 
   void set_pin(InternalGPIOPin *pin) { this->emitterPin = pin; }

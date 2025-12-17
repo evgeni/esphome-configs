@@ -3,7 +3,6 @@ esphome:
   libraries:
     - EEPROM
     - SPI
-    - SmartRC-CC1101-Driver-Lib@2.5.7
 
 esp32:
   board: nodemcu-32s
@@ -39,6 +38,15 @@ ota:
 
 web_server:
   port: 80
+
+spi:
+  clk_pin: GPIO18
+  mosi_pin: GPIO23
+  miso_pin: GPIO19
+
+cc1101:
+  cs_pin: GPIO5
+  frequency: 433.42MHz
 
 light:
   - platform: funkbus
