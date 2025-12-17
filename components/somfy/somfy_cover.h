@@ -8,6 +8,27 @@
 
 #define CC1101_FREQUENCY 433.42
 
+class SomfyESPRemote : public SomfyRemote {
+public:
+  SomfyESPRemote(esphome::InternalGPIOPin *emitterGPIOPin, uint32_t remote,
+                 RollingCodeStorage *rollingCodeStorage)
+      : SomfyRemote(0, remote, rollingCodeStorage),
+        emitterGPIOPin(emitterGPIOPin) {}
+
+private:
+  esphome::InternalGPIOPin *emitterGPIOPin;
+
+  void sendHigh(uint16_t durationInMicroseconds) override {
+    emitterGPIOPin->digital_write(HIGH);
+    delayMicroseconds(durationInMicroseconds);
+  }
+
+  void sendLow(uint16_t durationInMicroseconds) override {
+    emitterGPIOPin->digital_write(LOW);
+    delayMicroseconds(durationInMicroseconds);
+  }
+};
+
 namespace esphome {
 namespace somfy {
 
@@ -17,7 +38,7 @@ static const char *const TAG = "somfy.cover";
 
 class SomfyCover : public Cover, public Component {
 protected:
-  SomfyRemote *remote_;
+  SomfyESPRemote *remote_;
   NVSRollingCodeStorage *storage_;
   const char *storage_namespace_;
   const char *storage_key_;
@@ -30,11 +51,18 @@ public:
     this->emitter_pin_->pin_mode(gpio::FLAG_OUTPUT);
     this->emitter_pin_->digital_write(false);
 
+    ELECHOUSE_cc1101.setSpiPin(18, 19, 23, 5);
     ELECHOUSE_cc1101.Init();
     ELECHOUSE_cc1101.setMHZ(CC1101_FREQUENCY);
 
+    if (ELECHOUSE_cc1101.getCC1101()) {
+      ESP_LOGI(TAG, "CC1101 Connection OK");
+    } else {
+      ESP_LOGE(TAG, "CC1101 Connection Error");
+    }
+
     storage_ = new NVSRollingCodeStorage(storage_namespace_, storage_key_);
-    remote_ = new SomfyRemote(emitter_pin_->get_pin(), remote_address_, storage_);
+    remote_ = new SomfyESPRemote(emitter_pin_, remote_address_, storage_);
   }
 
   CoverTraits get_traits() override {
