@@ -44,4 +44,5 @@ light:
   - platform: funkbus
     name: "Test Funkbus"
     serial: !secret funkbus_serial
+    switch: 1
     pin: GPIO2
