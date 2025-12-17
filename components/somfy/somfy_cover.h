@@ -2,11 +2,8 @@
 
 #include "esphome/components/cover/cover.h"
 #include "esphome/core/component.h"
-#include <ELECHOUSE_CC1101_SRC_DRV.h>
 #include <NVSRollingCodeStorage.h>
 #include <SomfyRemote.h>
-
-#define CC1101_FREQUENCY 433.42
 
 class SomfyESPRemote : public SomfyRemote {
 public:
@@ -51,16 +48,6 @@ public:
     this->emitter_pin_->pin_mode(gpio::FLAG_OUTPUT);
     this->emitter_pin_->digital_write(false);
 
-    ELECHOUSE_cc1101.setSpiPin(18, 19, 23, 5);
-    ELECHOUSE_cc1101.Init();
-    ELECHOUSE_cc1101.setMHZ(CC1101_FREQUENCY);
-
-    if (ELECHOUSE_cc1101.getCC1101()) {
-      ESP_LOGI(TAG, "CC1101 Connection OK");
-    } else {
-      ESP_LOGE(TAG, "CC1101 Connection Error");
-    }
-
     storage_ = new NVSRollingCodeStorage(storage_namespace_, storage_key_);
     remote_ = new SomfyESPRemote(emitter_pin_, remote_address_, storage_);
   }
@@ -75,9 +62,9 @@ public:
   }
 
   void sendCC1101Command(Command command) {
-    ELECHOUSE_cc1101.SetTx();
+    //CC1101Component::begin_tx();
     remote_->sendCommand(command, this->repeat_);
-    ELECHOUSE_cc1101.setSidle();
+    //CC1101Component::set_idle();
   }
 
   void control(const CoverCall &call) override {

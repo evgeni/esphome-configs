@@ -4,7 +4,6 @@ esphome:
   libraries:
     - EEPROM
     - SPI
-    - SmartRC-CC1101-Driver-Lib@2.5.7
     - Somfy_Remote_Lib=https://github.com/Legion2/Somfy_Remote_Lib.git#v0.5.0
 
 esp32:
@@ -57,6 +56,15 @@ text_sensor:
   - platform: version
     name: "ESPHome Version"
     hide_timestamp: true
+
+spi:
+  clk_pin: GPIO18
+  mosi_pin: GPIO23
+  miso_pin: GPIO19
+
+cc1101:
+  cs_pin: GPIO5
+  frequency: 433.42MHz
 
 light:
   - platform: funkbus
