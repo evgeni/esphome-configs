@@ -63,11 +63,13 @@ spi:
   miso_pin: GPIO19
 
 cc1101:
+  id: cc
   cs_pin: GPIO5
   frequency: 433.42MHz
 
 light:
   - platform: funkbus
+    cc1101: cc
     serial: !secret funkbus_serial
     switch: 0
     name: "Wohnzimmer - Sofa"
@@ -75,6 +77,7 @@ light:
       number: GPIO2
       allow_other_uses: true
   - platform: funkbus
+    cc1101: cc
     serial: !secret funkbus_serial
     switch: 1
     name: "Wohnzimmer - TV"
@@ -89,6 +92,7 @@ cover:
     storage_key: badezimmer
     repeat: 6
     remote_address: !secret somfy_address_badezimmer
+    cc1101: cc
     pin:
       number: GPIO2
       allow_other_uses: true
@@ -99,6 +103,7 @@ cover:
     storage_key: kinderzimmer
     repeat: 6
     remote_address: !secret somfy_address_kinderzimmer
+    cc1101: cc
     pin:
       number: GPIO2
       allow_other_uses: true
@@ -109,6 +114,7 @@ cover:
     storage_key: bedroom
     repeat: 6
     remote_address: !secret somfy_address_bedroom
+    cc1101: cc
     pin:
       number: GPIO2
       allow_other_uses: true

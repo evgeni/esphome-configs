@@ -1,6 +1,7 @@
 #pragma once
 
 #include "esphome/components/cover/cover.h"
+#include "esphome/components/cc1101/cc1101.h"
 #include "esphome/core/component.h"
 #include <NVSRollingCodeStorage.h>
 #include <SomfyRemote.h>
@@ -42,6 +43,7 @@ protected:
   InternalGPIOPin *emitter_pin_;
   uint32_t remote_address_;
   int repeat_;
+  cc1101::CC1101Component *cc1101_;
 
 public:
   void setup() override {
@@ -62,9 +64,9 @@ public:
   }
 
   void sendCC1101Command(Command command) {
-    //CC1101Component::begin_tx();
+    cc1101_->begin_tx();
     remote_->sendCommand(command, this->repeat_);
-    //CC1101Component::set_idle();
+    cc1101_->set_idle();
   }
 
   void control(const CoverCall &call) override {
@@ -106,6 +108,7 @@ public:
     this->storage_key_ = storage_key;
   }
   void set_repeat(int repeat) { this->repeat_ = repeat; }
+  void set_cc1101(cc1101::CC1101Component *cc1101) { this->cc1101_ = cc1101; }
 };
 
 } // namespace somfy
