@@ -1,6 +1,7 @@
 #pragma once
 
 #include "esphome/components/light/light_output.h"
+#include "esphome/components/cc1101/cc1101.h"
 #include "esphome/core/component.h"
 #include "funkbus_remote.h"
 
@@ -13,6 +14,7 @@ class FunkbusLightOutput : public Component, public light::LightOutput {
 public:
   FunkbusRemote *remote;
   InternalGPIOPin *emitterPin;
+  cc1101::CC1101Component *cc1101_;
   uint32_t serial;
   uint8_t command;
   uint8_t group;
@@ -37,17 +39,18 @@ public:
   }
 
   void sendCommand(bool state) {
-    //CC1101Component::begin_tx();
+    cc1101_->begin_tx();
 
     uint8_t action = state ? 1 : 2; // 0=STOP, 1=OFF, 2=ON, 3=SCENE
     bool longpress = false;
 
     remote->sendCommand(this->command, this->group, action, longpress);
 
-    //CC1101Component::set_idle();
+    cc1101_->set_idle();
   }
 
   void set_pin(InternalGPIOPin *pin) { this->emitterPin = pin; }
+  void set_cc1101(cc1101::CC1101Component *cc1101) { this->cc1101_ = cc1101; }
 
   void set_serial(uint32_t serial) { this->serial = serial; }
   void set_switch(uint8_t command) { this->command = command; }
