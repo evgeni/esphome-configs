@@ -5,7 +5,7 @@ esphome:
     - EEPROM
     - SPI
     - SmartRC-CC1101-Driver-Lib@2.5.7
-    - Somfy_Remote_Lib=https://github.com/evgeni/Somfy_Remote_Lib.git#protected
+    - Somfy_Remote_Lib=https://github.com/Legion2/Somfy_Remote_Lib.git#v0.5.0
 
 esp32:
   board: nodemcu-32s
