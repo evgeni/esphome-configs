@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "fa852179a2400c71dabb8e1ac50607d0d83142cd67695bc34c2564bcd70fb6db"
+            "sha256": "c6bf0a5adc645edb9b78ebde0f18182c9572c6919bcdd9046098926f3473d1ca"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -366,7 +366,7 @@
                 "sha256:fc7de24befaeae77ba923797c7c87834c73648a05a4bde34b3b7e5588973a453",
                 "sha256:fe562eb1a64e67dd297ccc4f5addea2501664954f2692b69a76449ec7913ecbf"
             ],
-            "markers": "platform_python_implementation != 'PyPy'",
+            "markers": "python_version >= '3.9'",
             "version": "==2.0.0"
         },
         "chacha20poly1305-reuseable": {
@@ -603,7 +603,7 @@
                 "sha256:cea152a01991cb8b77eeb2403b156e5a8ba4300b729636aa732fc891c22e44d4",
                 "sha256:fb4db6cc605193576b6825d1827ff6bde9c09c23e385e33b05db74ed8916021f"
             ],
-            "markers": "platform_system == 'Linux'",
+            "markers": "python_version >= '3.10'",
             "version": "==3.1.2"
         },
         "defusedxml": {
@@ -616,11 +616,12 @@
         },
         "esphome": {
             "hashes": [
-                "sha256:4f0259a3bb391d653febc1b9b177fd8602157bf0c44542973f786770f01cee0d",
-                "sha256:9911c8dd44c7f86174ff0820b1f6f8ddc1424d0bfa3887486b8c0f680351abad"
+                "sha256:208235ac99e4783f2425310e632f52792de83d7da7b3490a181f97d0f90950a8",
+                "sha256:e5ad2e4d58fbbff7b060d2512c51ebed6868fbd172115dce557cbe78d6928c1a"
             ],
             "index": "pypi",
-            "version": "==2025.12.0"
+            "markers": "python_full_version >= '3.11.0' and python_version < '3.14'",
+            "version": "==2025.12.1"
         },
         "esphome-dashboard": {
             "hashes": [
@@ -992,7 +993,7 @@
                 "sha256:78816d4f24add8f10a06d6f05b4d424ad9e96cfebf68a4ddc99c65c0720d00c2",
                 "sha256:e5c6e8d3fbad53479cab09ac03729e0a9faf2bee3db8208a550daf5af81a5934"
             ],
-            "markers": "implementation_name != 'PyPy'",
+            "markers": "python_version >= '3.8'",
             "version": "==2.23"
         },
         "pyelftools": {
