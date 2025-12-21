@@ -1,7 +1,5 @@
 esphome:
   name: funkbus
-  libraries:
-    - SPI
 
 esp32:
   board: nodemcu-32s
