@@ -1,5 +1,5 @@
 esphome:
-  name: funkbus
+  name: funkbus-ard
   libraries:
     - EEPROM
     - SPI
@@ -7,7 +7,7 @@ esphome:
 esp32:
   board: nodemcu-32s
   framework:
-    type: esp-idf
+    type: arduino
 
 external_components:
   - source:

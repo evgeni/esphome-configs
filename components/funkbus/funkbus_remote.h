@@ -12,6 +12,8 @@
 #define BIT_MASK(x)                                                            \
   ((((unsigned)x) >= sizeof(unsigned) * CHAR_BIT) ? (unsigned)-1               \
                                                   : (1U << (x)) - 1)
+namespace esphome {
+namespace funkbus {
 
 class FunkbusRemote {
 private:
@@ -67,8 +69,8 @@ public:
     return result;
   }
 
-  static byte reverse_bits(byte bits, uint8_t len) {
-    byte result = 0;
+  static uint8_t reverse_bits(uint8_t bits, uint8_t len) {
+    uint8_t result = 0;
     while (len--) {
       result = (result << 1) | (bits & 1);
       bits >>= 1;
@@ -76,7 +78,7 @@ public:
     return result;
   }
 
-  void buildFrame(byte *frame, uint32_t serial, uint8_t command, uint8_t group, uint8_t action, bool longpress, bool repeat) {
+  void buildFrame(uint8_t *frame, uint32_t serial, uint8_t command, uint8_t group, uint8_t action, bool longpress, bool repeat) {
     frame[0] = reverse_bits(0x4, 4) << 4 | reverse_bits(0x3, 4);   // type 0x4 and subtype 0x3
     frame[1] = reverse_bits(serial, 8);                            // first 8 bit of serial
     frame[2] = reverse_bits(serial >> 8, 8);                       // second 8 bit of serial
@@ -89,25 +91,25 @@ public:
   }
 
   void sendHigh(uint16_t durationInMicroseconds) {
-    emitterPin->digital_write(HIGH);
+    emitterPin->digital_write(true);
     delayMicroseconds(durationInMicroseconds);
   }
 
   void sendLow(uint16_t durationInMicroseconds) {
-    emitterPin->digital_write(LOW);
+    emitterPin->digital_write(false);
     delayMicroseconds(durationInMicroseconds);
   }
 
-  void sendFrame(byte *frame) {
-    byte line_state = 0;
-    emitterPin->digital_write(LOW);
+  void sendFrame(uint8_t *frame) {
+    uint8_t line_state = 0;
+    emitterPin->digital_write(false);
 
     // sync
     sendHigh(4000);
     line_state = 1;
 
     // Data: bits are sent one by one, starting with the MSB.
-    for (byte i = 0; i < 48; i++) {
+    for (uint8_t i = 0; i < 48; i++) {
       if (((frame[i / 8] >> (7 - (i % 8))) & 1) == 0) {
         if (line_state == 0) {
           sendHigh(LONG_SYM);
@@ -135,13 +137,13 @@ public:
       sendLow(SHORT_SYM);
     }
 
-    emitterPin->digital_write(LOW);
+    emitterPin->digital_write(false);
   }
 
   void sendCommand(uint8_t command, uint8_t group, uint8_t action,
                    bool longpress) {
-    byte frame[6];
-    byte repeat_frame[6];
+    uint8_t frame[6];
+    uint8_t repeat_frame[6];
 
     buildFrame(frame, serial, command, group, action, longpress, false);
     buildFrame(repeat_frame, serial, command, group, action, longpress, true);
@@ -153,3 +155,6 @@ public:
     }
   }
 };
+
+} // namespace funkbus
+} // namespace esphome
