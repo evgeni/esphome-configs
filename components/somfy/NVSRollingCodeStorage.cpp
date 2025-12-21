@@ -1,10 +1,9 @@
 #include "NVSRollingCodeStorage.h"
 
-#ifdef ESP32
-
 #include <esp_system.h>
 #include <nvs.h>
 #include <nvs_flash.h>
+#include "esphome/core/log.h"
 
 NVSRollingCodeStorage::NVSRollingCodeStorage(const char *name, const char *key) : name(name), key(key) {}
 
@@ -34,18 +33,12 @@ uint16_t NVSRollingCodeStorage::nextCode() {
 			code = 1;
 			break;
 		default:
-			Serial.print("Error reading!");
-			Serial.println(esp_err_to_name(err));
+			ESP_LOGD("somfy.nvs", "Error reading!");
+			ESP_LOGD("somfy.nvs", esp_err_to_name(err));
 	}
 	err = nvs_set_u16(rcs_handle, key, code + 1);
-#ifdef DEBUG
-	Serial.println((err != ESP_OK) ? "nvs_set failed!" : "nvs_set done");
-#endif
+	ESP_LOGD("somfy.nvs", (err != ESP_OK) ? "nvs_set failed!" : "nvs_set done");
 	err = nvs_commit(rcs_handle);
-#ifdef DEBUG
-	Serial.println((err != ESP_OK) ? "nvs_commit failed!" : "nvs_commit done");
-#endif
+	ESP_LOGD("somfy.nvs", (err != ESP_OK) ? "nvs_commit failed!" : "nvs_commit done");
 	return code;
 }
-
-#endif

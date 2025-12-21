@@ -1,7 +1,5 @@
 #pragma once
 
-#ifdef ESP32
-
 #include "RollingCodeStorage.h"
 
 /**
@@ -16,5 +14,3 @@ public:
 	NVSRollingCodeStorage(const char *name, const char *key);
 	uint16_t nextCode() override;
 };
-
-#endif

@@ -1,10 +1,13 @@
 #pragma once
 
-#include <Arduino.h>
-
 #include "RollingCodeStorage.h"
+#include "esphome/core/gpio.h"
+#include "esphome/core/hal.h"
 
-enum class Command : byte {
+namespace esphome {
+namespace somfy {
+
+enum class Command : uint8_t {
 	My = 0x1,
 	Up = 0x2,
 	MyUp = 0x3,
@@ -18,19 +21,19 @@ enum class Command : byte {
 
 class SomfyRemote {
 private:
-	byte emitterPin;
+	esphome::InternalGPIOPin *emitterPin;
 	uint32_t remote;
 	RollingCodeStorage *const rollingCodeStorage;
 
-	void buildFrame(byte *frame, Command command, uint16_t code);
-	void sendFrame(byte *frame, byte sync);
-	void printFrame(byte *frame);
+	void buildFrame(uint8_t *frame, Command command, uint16_t code);
+	void sendFrame(uint8_t *frame, uint8_t sync);
+	void printFrame(uint8_t *frame);
 
 	virtual void sendHigh(uint16_t durationInMicroseconds);
 	virtual void sendLow(uint16_t durationInMicroseconds);
 
 public:
-	SomfyRemote(byte emitterPin, uint32_t remote, RollingCodeStorage *rollingCodeStorage);
+	SomfyRemote(esphome::InternalGPIOPin *emitterPin, uint32_t remote, RollingCodeStorage *rollingCodeStorage);
 	void setup();
 	/**
 	 * Send a command with this SomfyRemote.
@@ -51,4 +54,5 @@ public:
 	void sendCommandWithCode(Command command, uint16_t rollingCode, int repeat = 4);
 };
 
-Command getSomfyCommand(const String &string);
+} // namespace somfy
+} // namespace esphome

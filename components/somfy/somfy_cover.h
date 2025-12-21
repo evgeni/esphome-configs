@@ -3,29 +3,8 @@
 #include "esphome/components/cover/cover.h"
 #include "esphome/components/cc1101/cc1101.h"
 #include "esphome/core/component.h"
-#include <NVSRollingCodeStorage.h>
-#include <SomfyRemote.h>
-
-class SomfyESPRemote : public SomfyRemote {
-public:
-  SomfyESPRemote(esphome::InternalGPIOPin *emitterGPIOPin, uint32_t remote,
-                 RollingCodeStorage *rollingCodeStorage)
-      : SomfyRemote(0, remote, rollingCodeStorage),
-        emitterGPIOPin(emitterGPIOPin) {}
-
-private:
-  esphome::InternalGPIOPin *emitterGPIOPin;
-
-  void sendHigh(uint16_t durationInMicroseconds) override {
-    emitterGPIOPin->digital_write(true);
-    delayMicroseconds(durationInMicroseconds);
-  }
-
-  void sendLow(uint16_t durationInMicroseconds) override {
-    emitterGPIOPin->digital_write(false);
-    delayMicroseconds(durationInMicroseconds);
-  }
-};
+#include "NVSRollingCodeStorage.h"
+#include "SomfyRemote.h"
 
 namespace esphome {
 namespace somfy {
@@ -36,7 +15,7 @@ static const char *const TAG = "somfy.cover";
 
 class SomfyCover : public Cover, public Component {
 protected:
-  SomfyESPRemote *remote_;
+  SomfyRemote *remote_;
   NVSRollingCodeStorage *storage_;
   const char *storage_namespace_;
   const char *storage_key_;
@@ -51,7 +30,7 @@ public:
     this->emitter_pin_->digital_write(false);
 
     storage_ = new NVSRollingCodeStorage(storage_namespace_, storage_key_);
-    remote_ = new SomfyESPRemote(emitter_pin_, remote_address_, storage_);
+    remote_ = new SomfyRemote(emitter_pin_, remote_address_, storage_);
   }
 
   CoverTraits get_traits() override {
