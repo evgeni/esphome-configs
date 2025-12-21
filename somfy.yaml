@@ -2,8 +2,6 @@ esphome:
   name: somfy
   friendly_name: Somfy
   libraries:
-    - EEPROM
-    - SPI
     - Somfy_Remote_Lib=https://github.com/Legion2/Somfy_Remote_Lib.git#v0.5.0
 
 esp32:
