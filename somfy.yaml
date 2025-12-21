@@ -2,7 +2,7 @@ esphome:
   name: somfy
   friendly_name: Somfy
   libraries:
-    - Somfy_Remote_Lib=https://github.com/Legion2/Somfy_Remote_Lib.git#v0.5.0
+    - Somfy_Remote_Lib@0.5.0
 
 esp32:
   board: nodemcu-32s
