@@ -17,12 +17,12 @@ private:
   esphome::InternalGPIOPin *emitterGPIOPin;
 
   void sendHigh(uint16_t durationInMicroseconds) override {
-    emitterGPIOPin->digital_write(HIGH);
+    emitterGPIOPin->digital_write(true);
     delayMicroseconds(durationInMicroseconds);
   }
 
   void sendLow(uint16_t durationInMicroseconds) override {
-    emitterGPIOPin->digital_write(LOW);
+    emitterGPIOPin->digital_write(false);
     delayMicroseconds(durationInMicroseconds);
   }
 };
