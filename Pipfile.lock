@@ -616,12 +616,12 @@
         },
         "esphome": {
             "hashes": [
-                "sha256:208235ac99e4783f2425310e632f52792de83d7da7b3490a181f97d0f90950a8",
-                "sha256:e5ad2e4d58fbbff7b060d2512c51ebed6868fbd172115dce557cbe78d6928c1a"
+                "sha256:41e02af22c6de7f5de951c31ea8955e216d4225029c21ba39831b374174060dc",
+                "sha256:a3b1755f076340107f2ca9de0fc7e744819a253f22a34351b487d3edecd7bd88"
             ],
             "index": "pypi",
             "markers": "python_full_version >= '3.11.0' and python_version < '3.14'",
-            "version": "==2025.12.1"
+            "version": "==2025.12.2"
         },
         "esphome-dashboard": {
             "hashes": [
@@ -809,11 +809,11 @@
         },
         "marshmallow": {
             "hashes": [
-                "sha256:3350409f20a70a7e4e11a27661187b77cdcaeb20abca41c1454fe33636bea09c",
-                "sha256:e6d8affb6cb61d39d26402096dc0aee12d5a26d490a121f118d2e81dc0719dc6"
+                "sha256:013fa8a3c4c276c24d26d84ce934dc964e2aa794345a0f8c7e5a7191482c8a73",
+                "sha256:bbe2adb5a03e6e3571b573f42527c6fe926e17467833660bebd11593ab8dfd57"
             ],
             "markers": "python_version >= '3.9'",
-            "version": "==3.26.1"
+            "version": "==3.26.2"
         },
         "mdurl": {
             "hashes": [
@@ -1013,11 +1013,11 @@
         },
         "pyparsing": {
             "hashes": [
-                "sha256:2df8d5b7b2802ef88e8d016a2eb9c7aeaa923529cd251ed0fe4608275d4105b6",
-                "sha256:e38a4f02064cf41fe6593d328d0512495ad1f3d8a91c4f73fc401b3079a59a5e"
+                "sha256:023b5e7e5520ad96642e2c6db4cb683d3970bd640cdf7115049a6e9c3682df82",
+                "sha256:47fad0f17ac1e2cad3de3b458570fbc9b03560aa029ed5e16ee5554da9a2251c"
             ],
             "markers": "python_version >= '3.9'",
-            "version": "==3.2.5"
+            "version": "==3.3.1"
         },
         "pyserial": {
             "hashes": [
@@ -1130,11 +1130,11 @@
         },
         "rich-click": {
             "hashes": [
-                "sha256:af73dc68e85f3bebb80ce302a642b9fe3b65f3df0ceb42eb9a27c467c1b678c8",
-                "sha256:d70f39938bcecaf5543e8750828cbea94ef51853f7d0e174cda1e10543767389"
+                "sha256:48120531493f1533828da80e13e839d471979ec8d7d0ca7b35f86a1379cc74b6",
+                "sha256:9b195721a773b1acf0e16ff9ec68cef1e7d237e53471e6e3f7ade462f86c403a"
             ],
             "markers": "python_version >= '3.8'",
-            "version": "==1.9.4"
+            "version": "==1.9.5"
         },
         "ruamel.yaml": {
             "hashes": [
