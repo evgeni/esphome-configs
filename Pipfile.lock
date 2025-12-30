@@ -616,12 +616,12 @@
         },
         "esphome": {
             "hashes": [
-                "sha256:41e02af22c6de7f5de951c31ea8955e216d4225029c21ba39831b374174060dc",
-                "sha256:a3b1755f076340107f2ca9de0fc7e744819a253f22a34351b487d3edecd7bd88"
+                "sha256:0b22e927de581d5eb5711283e365e837345c4f50e3dcd3c74aadbcac1e906080",
+                "sha256:7b362b2e36c1cfe7c5c8721671073b590b9c401e535dbba673359bbb32d491ec"
             ],
             "index": "pypi",
             "markers": "python_full_version >= '3.11.0' and python_version < '3.14'",
-            "version": "==2025.12.2"
+            "version": "==2025.12.3"
         },
         "esphome-dashboard": {
             "hashes": [
@@ -812,7 +812,6 @@
                 "sha256:013fa8a3c4c276c24d26d84ce934dc964e2aa794345a0f8c7e5a7191482c8a73",
                 "sha256:bbe2adb5a03e6e3571b573f42527c6fe926e17467833660bebd11593ab8dfd57"
             ],
-            "index": "pypi",
             "markers": "python_version >= '3.9'",
             "version": "==3.26.2"
         },
