@@ -616,12 +616,12 @@
         },
         "esphome": {
             "hashes": [
-                "sha256:0b22e927de581d5eb5711283e365e837345c4f50e3dcd3c74aadbcac1e906080",
-                "sha256:7b362b2e36c1cfe7c5c8721671073b590b9c401e535dbba673359bbb32d491ec"
+                "sha256:4cb3d5ec77a5e020611b79d9d640a0224dce760861cee79afef83c74514d9d8b",
+                "sha256:7382efb80425f7cdc9a7d782cf8893a887c79808296107a13ecbf1793061c1c3"
             ],
             "index": "pypi",
             "markers": "python_full_version >= '3.11.0' and python_version < '3.14'",
-            "version": "==2025.12.3"
+            "version": "==2025.12.4"
         },
         "esphome-dashboard": {
             "hashes": [
