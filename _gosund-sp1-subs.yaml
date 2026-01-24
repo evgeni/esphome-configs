@@ -1,0 +1,13 @@
+sp1_current_resistor: "0.00221"
+sp1_voltage_divider: "871"
+#############
+# Note: These numbers were found online
+# BW SHP2 Current Resistor: 0.0028
+# BW SHP2 Voltage Devider: 960
+# Gosund SP1 Current Resistor: 0.00221
+# Gosund SP1 Voltage Devider: 871
+# Gosund SP1 Current Resistor ALT: 0.00103
+# Gosund SP1 Voltage Devider ALT: 2160
+#############
+red_led_pin: GPIO13
+blue_led_pin: GPIO1
