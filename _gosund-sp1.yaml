@@ -6,12 +6,15 @@ esphome:
 
 esp8266:
   board: esp8285
+  restore_from_flash: true
 
 # WiFi connection
 wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
   ap:
+    ssid: !secret fallback_ssid
+    password: !secret fallback_password
 
 captive_portal:
 # Enable logging
@@ -36,13 +39,16 @@ time:
   - platform: homeassistant
     id: homeassistant_time
 
+globals:
+  - id: total_energy
+    type: float
+    restore_value: true
+    initial_value: "0.0"
+
 # Text sensors with general information
 text_sensor:
   - platform: version
     name: ${friendly_name} Version
-  - platform: wifi_info
-    ip_address:
-      name: ${friendly_name} IP Address
 
 sensor:
   # Uptime sensor
@@ -80,14 +86,23 @@ sensor:
       name: ${friendly_name} Energy Power
       unit_of_measurement: W
       accuracy_decimals: 0
-  # Total daily energy sensor
   - platform: total_daily_energy
-    name: ${friendly_name} Daily Energy Usage
+    name: ${friendly_name} Total Energy
     power_id: power
+    state_class: total_increasing
     filters:
       # Multiplication factor from W to kW is 0.001
       - multiply: 0.001
+      - lambda: !lambda |-
+          static auto last_state = x;
+          if (x < last_state) { // x was reset
+            id(total_energy) += last_state;
+            ESP_LOGI("main", "Energy was reset: %f", id(total_energy));
+          }
+          last_state = x;
+          return id(total_energy) + x;
     unit_of_measurement: kWh
+
 # Binary sensor for the power button
 binary_sensor:
   - platform: gpio
@@ -108,7 +123,7 @@ switch:
     id: relay
     name: ${friendly_name} Power Switch
     pin: GPIO14
-    restore_mode: RESTORE_DEFAULT_OFF
+    restore_mode: RESTORE_DEFAULT_ON
     on_turn_on:
       - light.turn_on: led
     on_turn_off:
