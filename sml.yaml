@@ -51,6 +51,9 @@ sensor:
     accuracy_decimals: 1
     device_class: energy
     state_class: total_increasing
+    # After setting INF=on, 1.8.0 returns dWh (yes, 1/10Wh), not kWh, convert
+    filters:
+      - multiply: 0.0001
 
 text_sensor:
   - platform: version
