@@ -46,3 +46,10 @@ light:
     switch: 1
     cc1101: cc
     pin: GPIO2
+
+text_sensor:
+  - platform: template
+    name: "ESPHome Version"
+    icon: "mdi:new-box"
+    lambda: |-
+      return std::string(ESPHOME_VERSION);
