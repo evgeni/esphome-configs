@@ -168,6 +168,8 @@ sensor:
           return id(total_energy) + x;
 
 text_sensor:
-  - platform: version
+  - platform: template
     name: "ESPHome Version"
-    hide_timestamp: true
+    icon: "mdi:new-box"
+    lambda: |-
+      return std::string(ESPHOME_VERSION);

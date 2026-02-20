@@ -47,9 +47,11 @@ globals:
 
 # Text sensors with general information
 text_sensor:
-  - platform: version
+  - platform: template
     name: ${friendly_name} Version
-    hide_timestamp: true
+    icon: "mdi:new-box"
+    lambda: |-
+      return std::string(ESPHOME_VERSION);
 
 sensor:
   # Uptime sensor

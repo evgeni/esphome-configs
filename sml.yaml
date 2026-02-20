@@ -56,9 +56,11 @@ sensor:
       - multiply: 0.0001
 
 text_sensor:
-  - platform: version
+  - platform: template
     name: "ESPHome Version"
-    hide_timestamp: true
+    icon: "mdi:new-box"
+    lambda: |-
+      return std::string(ESPHOME_VERSION);
 
 uart:
   id: uart_bus
