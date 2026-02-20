@@ -3,6 +3,7 @@ esphome:
   friendly_name: Somfy
   libraries:
     - Somfy_Remote_Lib@0.5.0
+    - EEPROM
 
 esp32:
   board: nodemcu-32s
