@@ -1,5 +1,8 @@
-sp1_current_resistor: "0.00221"
-sp1_voltage_divider: "871"
+#sp1_current_resistor: "0.00221"
+#sp1_voltage_divider: "871"
+# after Energy Check 3000
+sp1_current_resistor: "0.002256"
+sp1_voltage_divider: "979"
 #############
 # Note: These numbers were found online
 # BW SHP2 Current Resistor: 0.0028
