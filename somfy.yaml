@@ -52,11 +52,10 @@ sensor:
     name: "Internal Temperature"
 
 text_sensor:
-  - platform: template
+  - platform: version
     name: "ESPHome Version"
-    icon: "mdi:new-box"
-    lambda: |-
-      return std::string(ESPHOME_VERSION);
+    hide_timestamp: true
+    hide_hash: true
 
 spi:
   clk_pin: GPIO18
