@@ -68,24 +68,6 @@ cc1101:
   cs_pin: GPIO5
   frequency: 433.42MHz
 
-light:
-  - platform: funkbus
-    cc1101: cc
-    serial: !secret funkbus_serial
-    switch: 0
-    name: "Wohnzimmer - Sofa"
-    pin:
-      number: GPIO2
-      allow_other_uses: true
-  - platform: funkbus
-    cc1101: cc
-    serial: !secret funkbus_serial
-    switch: 1
-    name: "Wohnzimmer - TV"
-    pin:
-      number: GPIO2
-      allow_other_uses: true
-
 cover:
   - platform: somfy
     name: Badezimmer
