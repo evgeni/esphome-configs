@@ -6,7 +6,7 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-esphome = ">=2026.5.3"
+esphome = ">=2026.6.2"
 
 [requires]
 python_version = "3.13"
