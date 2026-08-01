@@ -5,16 +5,6 @@ esphome:
   project:
     name: "NOUS.Smart-Wifi-Socket"
     version: "A8T"
-  on_boot:
-    priority: 200
-    then:
-      - if:
-          condition:
-            switch.is_on: relay
-          then:
-            - light.turn_on: led
-          else:
-            - light.turn_off: led
 
 esp32:
   board: esp32dev
@@ -85,10 +75,6 @@ switch:
     name: "Relay"
     restore_mode: RESTORE_DEFAULT_OFF
     icon: mdi:power
-    on_turn_on:
-      - light.turn_on: led
-    on_turn_off:
-      - light.turn_off: led
 
 sensor:
   - platform: wifi_signal
