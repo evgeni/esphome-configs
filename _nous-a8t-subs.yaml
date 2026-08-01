@@ -1,0 +1,6 @@
+# Higher value gives lower watt readout
+#current_res: "0.00126"
+# Lower value gives lower voltage readout
+#voltage_div: "1570"
+current_res: "0.001194"
+voltage_div: "1585"
