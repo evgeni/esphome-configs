@@ -1,0 +1,7 @@
+substitutions:
+  device_name: gosund-sp1-dd68db
+  friendly_name: Gosund SP1 dd68db
+  device_description: Gosund SP01 Smart Plug
+  <<: !include _gosund-sp1-subs.yaml
+
+<<: !include _gosund-sp1.yaml
