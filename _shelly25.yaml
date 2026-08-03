@@ -94,13 +94,13 @@ sensor:
       id: shelly_active_power_b
       internal: true
       filters:
-        - multiply: -1
+        - lambda: return abs(x);
     active_power_b:
       name: Shelly Active Power A
       id: shelly_active_power_a
       internal: true
       filters:
-        - multiply: -1
+        - lambda: return abs(x);
     update_interval: 0.5s
 
   # NTC Temperature
