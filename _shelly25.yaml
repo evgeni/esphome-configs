@@ -128,6 +128,27 @@ sensor:
   - platform: wifi_signal
     name: "WiFi Signal Sensor"
 
+  - platform: combination
+    type: sum
+    name: Shelly Active Power Total
+    id: shelly_active_power_total
+    internal: true
+    sources:
+      - source: shelly_active_power_a
+      - source: shelly_active_power_b
+
+  - platform: integration
+    name: "Shelly Total Energy"
+    sensor: shelly_active_power_total
+    time_unit: h
+    restore: true
+    state_class: total_increasing
+    device_class: energy
+    filters:
+      # Multiplication factor from W to kW is 0.001
+      - multiply: 0.001
+    unit_of_measurement: kWh
+
 text_sensor:
   - platform: version
     name: "ESPHome Version"
