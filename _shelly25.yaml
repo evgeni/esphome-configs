@@ -66,11 +66,11 @@ sun:
   longitude: !secret longitude
   on_sunset:
     - then:
-        if:
+      - delay: 2h
+      - if:
           condition:
             switch.is_off: ignore_schedule
           then:
-            - delay: 2h
             - cover.close: rolladen
 
 
