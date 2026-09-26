@@ -88,15 +88,6 @@ sensor:
                 lambda: 'return id(data_was_restored);'
               then:
                 - lambda: 'id(pulses) = x;'
-  - platform: homeassistant
-    name: Offset Gas
-    entity_id: sensor.meter_rf1c_offset
-    id: offset
-    on_value:
-      then:
-        - pulse_meter.set_total_pulses:
-            id: sensor_pulse_meter
-            value: !lambda 'return int(x);'
 
   - platform: uptime
     name: Uptime Sensor
@@ -112,3 +103,18 @@ text_sensor:
     name: "ESPHome Version"
     hide_timestamp: true
     hide_hash: true
+
+text:
+  - platform: template
+    name: "Gas reset"
+    optimistic: true
+    min_length: 0
+    max_length: 16
+    mode: text
+    on_value:
+      then:
+        - pulse_meter.set_total_pulses:
+            id: sensor_pulse_meter
+            value: !lambda |-
+              auto n = parse_number<float>(x);
+              return n.has_value() ? n.value() : NAN;
