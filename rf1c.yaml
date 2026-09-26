@@ -38,29 +38,25 @@ preferences:
 web_server:
   port: 80
 
-globals:
-  - id: pulses
-    type: int
-    restore_value: yes
-    initial_value: "0"
-
-binary_sensor:
-  - platform: gpio
-    id: pulse
-    internal: true
+sensor:
+  - platform: pulse_meter
+    id: sensor_pulse_meter
+    name: Gas Pulse
     pin:
       number: GPIO0
       mode:
         input: true
         pullup: true
-    name: Pulse
+    internal_filter: 100ms
+    device_class: gas
+    unit_of_measurement: "m³/min"
+    icon: "mdi:fire"
+    accuracy_decimals: 3
     filters:
-      - delayed_on_off: 100ms
-    on_press:
-      then:
-        - lambda: id(pulses) += 1;
-
-sensor:
+      - multiply: 0.01
+    total:
+      id: sensor_pulse_meter_total
+      name: "Total Pulses"
   - platform: template
     name: Gas
     device_class: gas
@@ -68,7 +64,7 @@ sensor:
     state_class: total_increasing
     icon: "mdi:fire"
     accuracy_decimals: 3
-    lambda: return id(pulses) * 0.01;
+    lambda: return id(sensor_pulse_meter_total).state * 0.01;
     update_interval: 60s
   - platform: homeassistant
     name: Offset Gas
@@ -76,8 +72,8 @@ sensor:
     id: offset
     on_value:
       then:
-        - globals.set:
-            id: pulses
+        - pulse_meter.set_total_pulses:
+            id: sensor_pulse_meter
             value: !lambda 'return int(x);'
 
   - platform: uptime
