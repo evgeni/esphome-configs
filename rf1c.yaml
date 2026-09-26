@@ -73,8 +73,14 @@ sensor:
       - multiply: 0.01
     total:
       id: sensor_pulse_meter_total
-      name: "Total Pulses"
-      on_value:
+      name: "Gas"
+      filters:
+        - multiply: 0.01
+      unit_of_measurement: "m³"
+      state_class: total_increasing
+      icon: "mdi:fire"
+      accuracy_decimals: 3
+      on_raw_value:
         then:
           - if:
               # This avoids overriding the pulses global before the value is restored by on_boot
@@ -82,15 +88,6 @@ sensor:
                 lambda: 'return id(data_was_restored);'
               then:
                 - lambda: 'id(pulses) = x;'
-  - platform: template
-    name: Gas
-    device_class: gas
-    unit_of_measurement: "m³"
-    state_class: total_increasing
-    icon: "mdi:fire"
-    accuracy_decimals: 3
-    lambda: return id(sensor_pulse_meter_total).state * 0.01;
-    update_interval: 60s
   - platform: homeassistant
     name: Offset Gas
     entity_id: sensor.meter_rf1c_offset
