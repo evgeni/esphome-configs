@@ -1,6 +1,14 @@
 esphome:
   name: rf1c
   friendly_name: RF1C
+  on_boot:
+    then:
+      - globals.set:
+          id: data_was_restored
+          value: 'true'
+      - pulse_meter.set_total_pulses:
+          id: sensor_pulse_meter
+          value: !lambda 'return id(pulses);'
 
 esp32:
   board: esp32-c3-devkitm-1
@@ -38,6 +46,15 @@ preferences:
 web_server:
   port: 80
 
+globals:
+  - id: pulses
+    type: int
+    restore_value: yes
+    initial_value: '0'
+  - id: data_was_restored
+    type: bool
+    initial_value: "0"
+
 sensor:
   - platform: pulse_meter
     id: sensor_pulse_meter
@@ -57,6 +74,14 @@ sensor:
     total:
       id: sensor_pulse_meter_total
       name: "Total Pulses"
+      on_value:
+        then:
+          - if:
+              # This avoids overriding the pulses global before the value is restored by on_boot
+              condition:
+                lambda: 'return id(data_was_restored);'
+              then:
+                - lambda: 'id(pulses) = x;'
   - platform: template
     name: Gas
     device_class: gas
