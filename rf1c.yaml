@@ -41,7 +41,7 @@ ota:
     password: !secret ota_password
 
 preferences:
-  flash_write_interval: 6h
+  flash_write_interval: 1h
 
 web_server:
   port: 80
