@@ -31,6 +31,9 @@ ota:
   - platform: esphome
     password: !secret ota_password
 
+preferences:
+  flash_write_interval: 1h
+
 time:
   - platform: homeassistant
     id: homeassistant_time
