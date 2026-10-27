@@ -29,7 +29,7 @@ api:
 
 ota:
   - platform: esphome
-    password: !secret ota_password
+    encryption:
 
 preferences:
   flash_write_interval: 1h
