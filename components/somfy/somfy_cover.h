@@ -63,9 +63,9 @@ public:
     return traits;
   }
 
-  void sendCC1101Command(Command command) {
+  void sendCC1101Command(Command command, int repeat = -1) {
     cc1101_->begin_tx();
-    remote_->sendCommand(command, this->repeat_);
+    remote_->sendCommand(command, repeat == -1 ? this->repeat_ : repeat);
     cc1101_->set_idle();
   }
 
@@ -95,7 +95,31 @@ public:
 
   void program() {
     ESP_LOGI(TAG, "PROG");
-    sendCC1101Command(Command::Prog);
+    sendCC1101Command(Command::Prog,1);
+  }
+  void long_program() {
+    ESP_LOGI(TAG, "LONG_PROG");
+    sendCC1101Command(Command::Prog,15);	
+  }
+  void up() {
+    ESP_LOGI("somfy", "UP");
+    sendCC1101Command(Command::Up);
+  }
+  void down() {
+    ESP_LOGI("somfy", "DOWN");
+    sendCC1101Command(Command::Down);
+  }
+  void stop() {
+    ESP_LOGI("somfy", "STOP");
+    sendCC1101Command(Command::My);
+  }
+  void tilt_up() {
+    ESP_LOGI("somfy", "TILT_UP");
+    sendCC1101Command(Command::Up,3);
+  }
+  void tilt_down() {
+    ESP_LOGI("somfy", "TILT_DOWN");
+    sendCC1101Command(Command::Down,3);
   }
 
   void set_pin(InternalGPIOPin *pin) { this->emitter_pin_ = pin; }
